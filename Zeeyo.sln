@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeyo.Api", "Zeeyo.Api\Zeeyo.Api.csproj", "{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4F18638C-6DBE-48EC-A529-E695C7EAD3E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeyo.Api", "src\Zeeyo.Api\Zeeyo.Api.csproj", "{4F668F85-8B4B-48BC-A006-6E98F879897B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4F668F85-8B4B-48BC-A006-6E98F879897B} = {4F18638C-6DBE-48EC-A529-E695C7EAD3E0}
 	EndGlobalSection
 EndGlobal

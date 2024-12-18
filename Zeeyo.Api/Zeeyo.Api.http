@@ -1,0 +1,6 @@
+@Zeeyo.Api_HostAddress = http://localhost:5117
+
+GET {{Zeeyo.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

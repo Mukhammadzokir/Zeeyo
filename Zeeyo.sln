@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeyo.Api", "Zeeyo.Api\Zeeyo.Api.csproj", "{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4F18638C-6DBE-48EC-A529-E695C7EAD3E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeyo.Api", "src\Zeeyo.Api\Zeeyo.Api.csproj", "{4F668F85-8B4B-48BC-A006-6E98F879897B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeyo.Data", "src\Zeeyo.Data\Zeeyo.Data.csproj", "{79C3455D-0299-4DC5-A441-33DA5621D4DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,19 +15,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1156315D-7B94-49C8-BE73-04E7D1CB5AEE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F668F85-8B4B-48BC-A006-6E98F879897B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C3455D-0299-4DC5-A441-33DA5621D4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C3455D-0299-4DC5-A441-33DA5621D4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C3455D-0299-4DC5-A441-33DA5621D4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C3455D-0299-4DC5-A441-33DA5621D4DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4F668F85-8B4B-48BC-A006-6E98F879897B} = {4F18638C-6DBE-48EC-A529-E695C7EAD3E0}
+		{79C3455D-0299-4DC5-A441-33DA5621D4DE} = {4F18638C-6DBE-48EC-A529-E695C7EAD3E0}
 	EndGlobalSection
 EndGlobal

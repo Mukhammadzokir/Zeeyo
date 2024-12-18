@@ -1,4 +1,5 @@
 ﻿using Zeeyo.Domain.Commons;
+using Zeeyo.Domain.Entities.Roles;
 
 namespace Zeeyo.Domain.Entities.Users;
 

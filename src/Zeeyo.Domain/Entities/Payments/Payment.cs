@@ -1,5 +1,6 @@
 ﻿using Zeeyo.Domain.Commons;
 using Zeeyo.Domain.Entities.Branches;
+using Zeeyo.Domain.Entities.Students;
 
 namespace Zeeyo.Domain.Entities.Payments;
 

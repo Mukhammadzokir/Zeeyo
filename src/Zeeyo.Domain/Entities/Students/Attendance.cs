@@ -1,5 +1,6 @@
 ﻿using Zeeyo.Domain.Commons;
 using Zeeyo.Domain.Entities.Courses;
+using Zeeyo.Domain.Enums;
 
 namespace Zeeyo.Domain.Entities.Students;
 

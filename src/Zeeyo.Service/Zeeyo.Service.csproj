@@ -13,8 +13,6 @@
   <ItemGroup>
     <Folder Include="DTOs\Users\" />
     <Folder Include="DTOs\Teachers\" />
-    <Folder Include="DTOs\Students\" />
-    <Folder Include="DTOs\Roles\" />
   </ItemGroup>
 
 </Project>

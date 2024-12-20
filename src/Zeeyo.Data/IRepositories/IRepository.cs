@@ -1,5 +1,5 @@
-﻿using System.Linq.Expressions;
-using Zeeyo.Domain.Commons;
+﻿using Zeeyo.Domain.Commons;
+using System.Linq.Expressions;
 
 namespace Zeeyo.Data.IRepositories;
 

@@ -1,4 +1,7 @@
-﻿namespace Zeeyo.Service.DTOs.Branches;
+﻿using Zeeyo.Service.DTOs.Users.Users;
+using Zeeyo.Service.DTOs.Courses.Courses;
+
+namespace Zeeyo.Service.DTOs.Branches;
 
 public class BranchForResultDto
 {

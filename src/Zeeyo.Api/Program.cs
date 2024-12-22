@@ -1,5 +1,7 @@
 using Zeeyo.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Zeeyo.Api.Extensions;
+using Serilog;
 
 namespace Zeeyo.Api;
 
@@ -15,6 +17,17 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        //// Logger 
+        var logger = new LoggerConfiguration()
+          .ReadFrom.Configuration(builder.Configuration)
+          .Enrich.FromLogContext()
+          .CreateLogger();
+        builder.Logging.ClearProviders();
+        builder.Logging.AddSerilog(logger);
+
+        //// ServiceExtension
+        builder.Services.AddCustomService();
 
         //// Db Connection
         builder.Services.AddDbContext<AppDbContext>(options =>

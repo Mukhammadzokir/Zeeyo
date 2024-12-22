@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Zeeyo.Data\Zeeyo.Data.csproj" />
     <ProjectReference Include="..\Zeeyo.Domain\Zeeyo.Domain.csproj" />
   </ItemGroup>
 

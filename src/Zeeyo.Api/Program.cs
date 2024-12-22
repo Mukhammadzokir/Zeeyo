@@ -1,7 +1,8 @@
-using Zeeyo.Data.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using Zeeyo.Api.Extensions;
 using Serilog;
+using Zeeyo.Api.Extensions;
+using Zeeyo.Data.DbContexts;
+using Zeeyo.Api.MiddleWares;
+using Microsoft.EntityFrameworkCore;
 
 namespace Zeeyo.Api;
 
@@ -46,6 +47,8 @@ public class Program
 
         app.UseAuthorization();
 
+        //// MiddleWare
+        app.UseMiddleware<ExceptionHandlerMiddleWare>();
 
         app.MapControllers();
 

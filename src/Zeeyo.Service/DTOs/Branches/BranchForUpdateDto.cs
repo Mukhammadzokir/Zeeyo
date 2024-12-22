@@ -1,6 +1,6 @@
 ﻿namespace Zeeyo.Service.DTOs.Branches;
 
-partial class BranchForUpdateDto
+public class BranchForUpdateDto
 {
     public string Name { get; set; }
     public string Description { get; set; }

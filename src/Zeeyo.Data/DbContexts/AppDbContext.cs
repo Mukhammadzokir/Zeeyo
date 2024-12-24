@@ -22,9 +22,7 @@ public class AppDbContext : DbContext
     DbSet<Lesson> Lessons { get; set; }
     DbSet<Branch> Branches { get; set; }
     DbSet<Payment> Payments { get; set; }
-    DbSet<Teacher> Teachers { get; set; }
     DbSet<Message> Messages { get; set; }
-    DbSet<Student> Students { get; set; }
     DbSet<UserCode> UserCodes { get; set; }
     DbSet<UserRole> UserRoles { get; set; }
     DbSet<Permission> Permissions { get; set; }
@@ -32,8 +30,7 @@ public class AppDbContext : DbContext
     DbSet<Enrollment> Enrollments { get; set; }
     DbSet<TeacherCourse> TeachersCourse { get; set; }
     DbSet<RolePermission> RolePermissions { get; set; }
-    DbSet<TeacherProfilePhoto> TeachersProfilePhoto { get; set; }
-    DbSet<StudentProfilePhoto> StudentProfilesPhoto { get; set; }
+    DbSet<UserProfilePhoto> UsersProfilePhoto { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

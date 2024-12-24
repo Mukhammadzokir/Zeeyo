@@ -11,8 +11,8 @@ public class TeacherForCreationDto
     [MinLength(1),MaxLength(64)]
     public string LastName { get; set; }
 
-    [MinLength(1),MaxLength(200)]
-    public string Specialization { get; set; }
+    [MinLength(1), MaxLength(200)]
+    public string TeacherSpecialization { get; set; }
 
     [PhoneNumberAttribute]
     public string PhoneNumber { get; set; }
@@ -20,9 +20,6 @@ public class TeacherForCreationDto
     [MinLength(1), MaxLength(64)]
     public string TelegramUserName { get; set; }
     public DateTime DateOfBirth { get; set; }
-
-    [Required]
-    public long UserId { get; set; }
 
     [Required]
     public long BranchId { get; set; }

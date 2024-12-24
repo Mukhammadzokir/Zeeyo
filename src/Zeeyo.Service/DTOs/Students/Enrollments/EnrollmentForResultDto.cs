@@ -1,5 +1,5 @@
-﻿using Zeeyo.Domain.Entities.Courses;
-using Zeeyo.Domain.Entities.Students;
+﻿using Zeeyo.Domain.Entities.Users;
+using Zeeyo.Domain.Entities.Courses;
 
 namespace Zeeyo.Service.DTOs.Students.Enrollments;
 
@@ -7,7 +7,7 @@ public class EnrollmentForResultDto
 {
     public long Id { get; set; }
     public long StudentId { get; set; }
-    public Student Student { get; set; }
+    public User Student { get; set; }
     public long CourseId { get; set; }
     public Course Course { get; set; }
     public DateTime EnrollmentDate { get; set; }

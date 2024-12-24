@@ -12,8 +12,8 @@ using Zeeyo.Data.DbContexts;
 namespace Zeeyo.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241218105902_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20241224181906_InitialMigrations")]
+    partial class InitialMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -65,6 +68,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.ToTable("Assets");
@@ -91,6 +97,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -111,6 +120,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -133,6 +145,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -157,6 +172,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -188,6 +206,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -199,6 +220,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -224,6 +248,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -235,6 +262,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -264,6 +294,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -272,6 +305,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -296,6 +332,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -304,6 +343,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -324,6 +366,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -332,6 +377,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -352,6 +400,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -363,6 +414,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -393,6 +447,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -404,6 +461,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -431,6 +491,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("EnrollmentDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -443,6 +506,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
@@ -450,104 +516,6 @@ namespace Zeeyo.Data.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("Enrollments");
-                });
-
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Students.Student", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsGraduated")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("TelegramUserName")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.Teacher", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Specialization")
-                        .HasColumnType("text");
-
-                    b.Property<string>("TelegramUserName")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.TeacherCourse", b =>
@@ -570,6 +538,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -578,6 +549,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -599,14 +573,20 @@ namespace Zeeyo.Data.Migrations
                     b.Property<long>("BranchId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CourseId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("timestamp with time zone");
@@ -615,6 +595,9 @@ namespace Zeeyo.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("IsStudentGraduated")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsVerified")
@@ -632,12 +615,26 @@ namespace Zeeyo.Data.Migrations
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
 
+                    b.Property<string>("Salt")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TeacherSpecialization")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TelegramUserName")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BranchId");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Users");
                 });
@@ -659,6 +656,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -667,6 +667,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -692,6 +695,9 @@ namespace Zeeyo.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -700,6 +706,9 @@ namespace Zeeyo.Data.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -713,30 +722,17 @@ namespace Zeeyo.Data.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Students.StudentProfilePhoto", b =>
+            modelBuilder.Entity("Zeeyo.Domain.Entities.Users.UserProfilePhoto", b =>
                 {
                     b.HasBaseType("Zeeyo.Domain.Entities.Assets.Asset");
 
-                    b.Property<long>("StudentId")
+                    b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.HasIndex("StudentId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.HasDiscriminator().HasValue("StudentProfilePhoto");
-                });
-
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.TeacherProfilePhoto", b =>
-                {
-                    b.HasBaseType("Zeeyo.Domain.Entities.Assets.Asset");
-
-                    b.Property<long>("TeacherId")
-                        .HasColumnType("bigint");
-
-                    b.HasIndex("TeacherId")
-                        .IsUnique();
-
-                    b.HasDiscriminator().HasValue("TeacherProfilePhoto");
+                    b.HasDiscriminator().HasValue("UserProfilePhoto");
                 });
 
             modelBuilder.Entity("Zeeyo.Domain.Entities.Courses.Course", b =>
@@ -769,8 +765,8 @@ namespace Zeeyo.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Zeeyo.Domain.Entities.Students.Student", "Student")
-                        .WithMany("Payments")
+                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "Student")
+                        .WithMany("StudentPayments")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -807,8 +803,8 @@ namespace Zeeyo.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Zeeyo.Domain.Entities.Students.Student", "Student")
-                        .WithMany("Attendances")
+                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "Student")
+                        .WithMany("StudentAttendances")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -821,13 +817,13 @@ namespace Zeeyo.Data.Migrations
             modelBuilder.Entity("Zeeyo.Domain.Entities.Students.Enrollment", b =>
                 {
                     b.HasOne("Zeeyo.Domain.Entities.Courses.Course", "Course")
-                        .WithMany("Students")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Zeeyo.Domain.Entities.Students.Student", "Student")
-                        .WithMany("Courses")
+                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "Student")
+                        .WithMany("StudentCourses")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -837,38 +833,16 @@ namespace Zeeyo.Data.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Students.Student", b =>
-                {
-                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "User")
-                        .WithOne("Student")
-                        .HasForeignKey("Zeeyo.Domain.Entities.Students.Student", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.Teacher", b =>
-                {
-                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "User")
-                        .WithOne("Teacher")
-                        .HasForeignKey("Zeeyo.Domain.Entities.Teachers.Teacher", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.TeacherCourse", b =>
                 {
                     b.HasOne("Zeeyo.Domain.Entities.Courses.Course", "Course")
-                        .WithMany("Teachers")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Zeeyo.Domain.Entities.Teachers.Teacher", "Teacher")
-                        .WithMany("Courses")
+                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "Teacher")
+                        .WithMany("TeacherCourses")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -880,11 +854,17 @@ namespace Zeeyo.Data.Migrations
 
             modelBuilder.Entity("Zeeyo.Domain.Entities.Users.User", b =>
                 {
-                    b.HasOne("Zeeyo.Domain.Entities.Branches.Branch", null)
+                    b.HasOne("Zeeyo.Domain.Entities.Branches.Branch", "Branch")
                         .WithMany("Users")
                         .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Zeeyo.Domain.Entities.Courses.Course", null)
+                        .WithMany("Students")
+                        .HasForeignKey("CourseId");
+
+                    b.Navigation("Branch");
                 });
 
             modelBuilder.Entity("Zeeyo.Domain.Entities.Users.UserCode", b =>
@@ -907,7 +887,7 @@ namespace Zeeyo.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Zeeyo.Domain.Entities.Users.User", "User")
-                        .WithMany("Roles")
+                        .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -917,26 +897,15 @@ namespace Zeeyo.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Students.StudentProfilePhoto", b =>
+            modelBuilder.Entity("Zeeyo.Domain.Entities.Users.UserProfilePhoto", b =>
                 {
-                    b.HasOne("Zeeyo.Domain.Entities.Students.Student", "Student")
-                        .WithOne("StudentProfilePhoto")
-                        .HasForeignKey("Zeeyo.Domain.Entities.Students.StudentProfilePhoto", "StudentId")
+                    b.HasOne("Zeeyo.Domain.Entities.Users.User", "User")
+                        .WithOne("UserProfilePhoto")
+                        .HasForeignKey("Zeeyo.Domain.Entities.Users.UserProfilePhoto", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.TeacherProfilePhoto", b =>
-                {
-                    b.HasOne("Zeeyo.Domain.Entities.Teachers.Teacher", "Teacher")
-                        .WithOne("TeacherProfilePhoto")
-                        .HasForeignKey("Zeeyo.Domain.Entities.Teachers.TeacherProfilePhoto", "TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Teacher");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Zeeyo.Domain.Entities.Branches.Branch", b =>
@@ -953,8 +922,6 @@ namespace Zeeyo.Data.Migrations
                     b.Navigation("Lessons");
 
                     b.Navigation("Students");
-
-                    b.Navigation("Teachers");
                 });
 
             modelBuilder.Entity("Zeeyo.Domain.Entities.Roles.Permission", b =>
@@ -969,33 +936,21 @@ namespace Zeeyo.Data.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Students.Student", b =>
-                {
-                    b.Navigation("Attendances");
-
-                    b.Navigation("Courses");
-
-                    b.Navigation("Payments");
-
-                    b.Navigation("StudentProfilePhoto");
-                });
-
-            modelBuilder.Entity("Zeeyo.Domain.Entities.Teachers.Teacher", b =>
-                {
-                    b.Navigation("Courses");
-
-                    b.Navigation("TeacherProfilePhoto");
-                });
-
             modelBuilder.Entity("Zeeyo.Domain.Entities.Users.User", b =>
                 {
-                    b.Navigation("Roles");
+                    b.Navigation("StudentAttendances");
 
-                    b.Navigation("Student");
+                    b.Navigation("StudentCourses");
 
-                    b.Navigation("Teacher");
+                    b.Navigation("StudentPayments");
+
+                    b.Navigation("TeacherCourses");
 
                     b.Navigation("UserCodes");
+
+                    b.Navigation("UserProfilePhoto");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

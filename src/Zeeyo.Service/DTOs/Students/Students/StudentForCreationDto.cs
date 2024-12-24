@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Zeeyo.Service.Commons.Attributes;
+﻿using Zeeyo.Service.Commons.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Zeeyo.Service.DTOs.Students.Students;
 
@@ -13,9 +13,6 @@ public class StudentForCreationDto
 
     [MinLength(1), MaxLength(64)]
     public string TelegramUserName { get; set; }
-
-    [Required]
-    public long UserId { get; set; }
 
     [Required]
     public long BranchId { get; set; }

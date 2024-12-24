@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
+using Zeeyo.Service.Helpers;
+using Zeeyo.Domain.Extensions;
 using Zeeyo.Service.Exceptions;
 using Zeeyo.Data.IRepositories;
 using Zeeyo.Service.DTOs.Branches;
 using Zeeyo.Service.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.Interfaces.Branches;
-using Microsoft.EntityFrameworkCore;
-using Zeeyo.Domain.Extensions;
 
 namespace Zeeyo.Service.Services.Branches;
 
@@ -41,6 +42,7 @@ public class BranchService : IBranchService
 
         var mappedData = _mapper.Map(dto, branchData);
         mappedData.UpdatedAt = DateTime.UtcNow;
+        mappedData.UpdatedBy = HttpContextHelper.UserId;
 
         await _branchRepository.UpdateAsync(mappedData);
 
@@ -53,6 +55,8 @@ public class BranchService : IBranchService
             .SelectAsync(b => b.Id == id && !b.IsDeleted);
         if (branchData is null)
             throw new ZeeyoException(404, "Branch is not found");
+
+        branchData.DeletedBy = HttpContextHelper.UserId;
          
         return await _branchRepository.DeleteAsync(id);
     }

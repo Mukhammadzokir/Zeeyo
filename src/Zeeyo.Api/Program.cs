@@ -19,13 +19,19 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        //// Logger 
+        // Logger 
         var logger = new LoggerConfiguration()
           .ReadFrom.Configuration(builder.Configuration)
           .Enrich.FromLogContext()
           .CreateLogger();
         builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(logger);
+
+        // swagger set up
+        builder.Services.AddSwaggerService();
+
+        // JWT service
+        builder.Services.AddJwtService(builder.Configuration);
 
         //// ServiceExtension
         builder.Services.AddCustomService();
@@ -45,6 +51,7 @@ public class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         //// MiddleWare

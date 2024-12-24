@@ -18,12 +18,7 @@ public interface IUserService
     Task<UserProfilePhotoForResultDto> RetrieveProfilePhotoAsync(long userId);
     Task<UserProfilePhotoForResultDto> AddProfilePhotoAsync(long userId, IFormFile formFile);
 
-    Task<IEnumerable<UserForResultDto>> GetAllByCourseAsync(long id);
     Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto);
     Task<bool> ForgetPasswordAsync(string PhoneNumber, string NewPassword, string ConfirmPassword);
     Task<UserForResultDto> RetrieveByPhoneNumberAsync(string phoneNumber);
-    Task<IEnumerable<UserForResultDto>> RetrieveAllAdminsAsync(PaginationParams @params);
-    Task<IEnumerable<UserForResultDto>> RetrieveAllTeachersAsync(PaginationParams @params);
-    Task<IEnumerable<UserForResultDto>> SearchAdminsAsync(string search, PaginationParams @params);
-    Task<IEnumerable<UserForResultDto>> SearchTeachersAsync(string search, PaginationParams @params);
 }

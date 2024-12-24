@@ -18,9 +18,9 @@ public class StudentForResultDto
     public Branch Branch { get; set; }
     public string PhoneNumber { get; set; }
     public DateTime DateOfBirth { get; set; }
-    public string IsGraduated { get; set; }
-    public ICollection<PaymentForResultDto> Payments { get; set; }
-    public ICollection<EnrollmentForResultDto> Courses { get; set; }
-    public StudentProfilePhotoForResultDto ProfilePhoto { get; set; }
-    public ICollection<AttendanceForResultDto> Attendances { get; set; }
+    public string IsStudentGraduated { get; set; }
+    public ICollection<PaymentForResultDto> StudentPayments { get; set; }
+    public ICollection<EnrollmentForResultDto> StudentCourses { get; set; }
+    public StudentProfilePhotoForResultDto UserProfilePhoto { get; set; }
+    public ICollection<AttendanceForResultDto> StudentAttendances { get; set; }
 }

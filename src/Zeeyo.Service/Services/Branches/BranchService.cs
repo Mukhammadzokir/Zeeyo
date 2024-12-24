@@ -65,8 +65,8 @@ public class BranchService : IBranchService
     {
         var branchData = await _branchRepository
             .SelectAll(b => !b.IsDeleted)
-            .Include(b => b.Users.Where(u => !u.IsDeleted))
-            .Include(b => b.Courses.Where(c => !c.IsDeleted))
+            //.Include(b => b.Users.Where(u => !u.IsDeleted))
+            //.Include(b => b.Courses.Where(c => !c.IsDeleted))
             .AsNoTracking()
             .ToPagedList(@params)
             .ToListAsync();
@@ -79,8 +79,8 @@ public class BranchService : IBranchService
         var branchData = await _branchRepository
             .SelectAll(b => !b.IsDeleted)
             .Where(b => b.Id == id)
-            .Include(b => b.Users.Where(u => !u.IsDeleted))
-            .Include(b => b.Courses.Where(c => !c.IsDeleted))
+            //.Include(b => b.Users.Where(u => !u.IsDeleted))
+            //.Include(b => b.Courses.Where(c => !c.IsDeleted))
             .AsNoTracking()
             .FirstOrDefaultAsync();
         if (branchData is null)
@@ -97,8 +97,8 @@ public class BranchService : IBranchService
                 || b.Description.ToLower().Contains(search.ToLower())
                 || b.Address.ToLower().Contains(search.ToLower())
                 || b.PhoneNumber.Contains(search))
-            .Include(b => b.Users.Where(u => !u.IsDeleted))
-            .Include(b => b.Courses.Where(u => !u.IsDeleted))
+            //.Include(b => b.Users.Where(u => !u.IsDeleted))
+            //.Include(b => b.Courses.Where(u => !u.IsDeleted))
             .AsNoTracking()
             .ToPagedList(@params)
             .ToListAsync();

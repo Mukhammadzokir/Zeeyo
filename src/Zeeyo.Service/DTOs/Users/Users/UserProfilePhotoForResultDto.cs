@@ -1,6 +1,6 @@
-﻿namespace Zeeyo.Service.DTOs.Teachers.Teachers;
+﻿namespace Zeeyo.Service.DTOs.Users.Users;
 
-public class TeacherProfilePhotoForResultDto
+public class UserProfilePhotoForResultDto
 {
     public long Id { get; set; }
     public long UserId { get; set; }

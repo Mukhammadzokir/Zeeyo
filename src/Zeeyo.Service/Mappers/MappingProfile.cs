@@ -34,6 +34,7 @@ public class MappingProfile : Profile
         CreateMap<User, UserForResultDto>();
         CreateMap<User, UserForUpdateDto>();
         CreateMap<User, UserForCreationDto>();
+        CreateMap<UserProfilePhoto, UserProfilePhotoForResultDto>();
 
         // Role
         CreateMap<Role, RoleForResultDto>();
@@ -56,10 +57,10 @@ public class MappingProfile : Profile
         CreateMap<Lesson, LessonForCreationDto>().ReverseMap();
 
         // Teacher
-        CreateMap<Teacher, TeacherForResultDto>().ReverseMap();
-        CreateMap<Teacher, TeacherForUpdateDto>().ReverseMap();
-        CreateMap<Teacher, TeacherForCreationDto>().ReverseMap();
-        CreateMap<TeacherProfilePhoto, TeacherProfilePhotoForResultDto>().ReverseMap();
+        CreateMap<User, TeacherForResultDto>().ReverseMap();
+        CreateMap<User, TeacherForUpdateDto>().ReverseMap();
+        CreateMap<User, TeacherForCreationDto>().ReverseMap();
+        CreateMap<UserProfilePhoto, TeacherProfilePhotoForResultDto>().ReverseMap();
 
         // Payment
         CreateMap<Payment, PaymentForResultDto>().ReverseMap();
@@ -67,10 +68,10 @@ public class MappingProfile : Profile
         CreateMap<Payment, PaymentForCreationDto>().ReverseMap();
 
         // Student
-        CreateMap<Student, StudentForResultDto>().ReverseMap();
-        CreateMap<Student, StudentForUpdateDto>().ReverseMap();
-        CreateMap<Student, StudentForCreationDto>().ReverseMap();
-        CreateMap<StudentProfilePhoto, StudentProfilePhotoForResultDto>().ReverseMap();
+        CreateMap<User, StudentForResultDto>().ReverseMap();
+        CreateMap<User, StudentForUpdateDto>().ReverseMap();
+        CreateMap<User, StudentForCreationDto>().ReverseMap();
+        CreateMap<UserProfilePhoto, StudentProfilePhotoForResultDto>().ReverseMap();
 
         // UserRole
         CreateMap<UserRole, UserRoleForResultDto>().ReverseMap();

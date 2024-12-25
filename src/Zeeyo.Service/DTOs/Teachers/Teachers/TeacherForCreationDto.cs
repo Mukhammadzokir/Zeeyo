@@ -14,6 +14,9 @@ public class TeacherForCreationDto
     [MinLength(1), MaxLength(200)]
     public string TeacherSpecialization { get; set; }
 
+    [StrongPasswordAttribute]
+    public string Password { get; set; }
+
     [PhoneNumberAttribute]
     public string PhoneNumber { get; set; }
 

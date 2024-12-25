@@ -62,7 +62,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
     }
 
     public async Task<TEntity> SelectAsync(Expression<Func<TEntity, bool>> expression, string[] includes = null)
-        => await this.SelectAll(expression, includes).FirstOrDefaultAsync();
+        => await this.SelectAll(expression, includes).FirstOrDefaultAsync(e => !e.IsDeleted);
 
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Zeeyo.Service.Helpers;
+using Zeeyo.Domain.Extensions;
 using Zeeyo.Service.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Zeeyo.Data.IRepositories;
 using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Service.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.Interfaces.Users;
@@ -148,8 +150,8 @@ public class UserService : IUserService
 
     public async Task<UserForResultDto> ModifyAsync(long id, UserForUpdateDto dto)
     {
-        var branchData = await _branchRepository
-           .SelectAsync(b => b.Id == dto.BranchId);
+        var branchData = await _branchRepository.SelectAsync(b => b.Id == dto.BranchId);
+
         if (branchData is null)
             throw new ZeeyoException(404, "Branch is not found");
 
@@ -169,8 +171,8 @@ public class UserService : IUserService
 
     public async Task<bool> RemoveAsync(long id)
     {
-        var userData = await _userRepository
-            .SelectAsync(u => u.Id == id);
+        var userData = await _userRepository.SelectAsync(u => u.Id == id);
+
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");
 
@@ -196,29 +198,77 @@ public class UserService : IUserService
         return await _userProfilePhotoRepository.DeleteAsync(userProfilePhotoId);
     }
 
-    public Task<IEnumerable<UserForResultDto>> RetrieveAllAsync(PaginationParams @params)
+    public async Task<IEnumerable<UserForResultDto>> RetrieveAllAsync(PaginationParams @params)
     {
-        throw new NotImplementedException();
+        var userData = await _userRepository
+            .SelectAll(u => !u.IsDeleted)
+            //.Where(u => u.UserRoles.Any(ur => ur.Role.Name == "User"))
+            .AsNoTracking()
+            .ToPagedList(@params)
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<UserForResultDto>>(userData);
     }
 
-    public Task<UserForResultDto> RetrieveByIdAsync(long id)
+    public async Task<IEnumerable<UserForResultDto>> RetrieveAllByBranchIdAsync(long branchId, PaginationParams @params)
     {
-        throw new NotImplementedException();
+        var userData = await _userRepository
+            .SelectAll(u => !u.IsDeleted)
+            .Where(u => u.BranchId == branchId)
+            .AsNoTracking()
+            .ToPagedList(@params)
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<UserForResultDto>>(userData);
     }
 
-    public Task<UserForResultDto> RetrieveByPhoneNumberAsync(string phoneNumber)
+    public async Task<UserForResultDto> RetrieveByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var userData = await _userRepository.SelectAsync(s => s.Id == id);
+
+        if (userData is null)
+            throw new ZeeyoException(404, "User is not found");
+
+        return _mapper.Map<UserForResultDto>(userData);
     }
 
-    public Task<UserProfilePhotoForResultDto> RetrieveProfilePhotoAsync(long userId)
+    public async Task<UserForResultDto> RetrieveByPhoneNumberAsync(string phoneNumber)
     {
-        throw new NotImplementedException();
+        var userData = await _userRepository.SelectAsync(s => s.PhoneNumber == phoneNumber);
+
+        if (userData is null)
+            throw new ZeeyoException(404, "User is not found");
+
+        return _mapper.Map<UserForResultDto>(userData);
     }
 
-    public Task<IEnumerable<UserForResultDto>> SearchAllAsync(string search, PaginationParams @params)
+    public async Task<UserProfilePhotoForResultDto> RetrieveProfilePhotoAsync(long userId)
     {
-        throw new NotImplementedException();
+        var userData = await _userRepository.SelectAsync(u => u.Id == userId);
+
+        if (userData is null)
+            throw new ZeeyoException(404, "User is not found");
+
+        var userProfilePhotoData = await _userProfilePhotoRepository.SelectAsync(up => up.UserId == userId);
+
+        if (userProfilePhotoData is null)
+            throw new ZeeyoException(404, "UserProfilePhoto is not found");
+
+        return _mapper.Map<UserProfilePhotoForResultDto>(userProfilePhotoData);
+    }
+
+    public async Task<IEnumerable<UserForResultDto>> SearchAllAsync(string search, PaginationParams @params)
+    {
+        var userData = await _userRepository
+            .SelectAll(u => !u.IsDeleted)
+            .Where(u => u.FirstName.ToLower().Contains(search.ToLower())
+                                || u.LastName.ToLower().Contains(search.ToLower())
+                                || u.PhoneNumber.Contains(search))
+            .AsNoTracking()
+            .ToPagedList(@params)
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<UserForResultDto>>(userData);
     }
 
 }

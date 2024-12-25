@@ -182,17 +182,17 @@ public class UserService : IUserService
     public async Task<bool> RemoveProfilePhotoAsync(long userId)
     {
         var userData = await _userRepository
-            .SelectAsync(s => s.Id == userId);
+            .SelectAsync(u => u.Id == userId);
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");
 
-        var studentProfilePhotoData = await _userProfilePhotoRepository
+        var userProfilePhotoData = await _userProfilePhotoRepository
             .SelectAsync(up => up.Id == userId);
-        if (studentProfilePhotoData is null)
+        if (userProfilePhotoData is null)
             throw new ZeeyoException(404, "UserProfilePhoto is not found");
 
         var userProfilePhotoId = (await _userProfilePhotoRepository
-            .SelectAsync(sp => sp.Id == userId))
+            .SelectAsync(up => up.Id == userId))
             .Id;
 
         return await _userProfilePhotoRepository.DeleteAsync(userProfilePhotoId);
@@ -224,7 +224,7 @@ public class UserService : IUserService
 
     public async Task<UserForResultDto> RetrieveByIdAsync(long id)
     {
-        var userData = await _userRepository.SelectAsync(s => s.Id == id);
+        var userData = await _userRepository.SelectAsync(u => u.Id == id);
 
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");

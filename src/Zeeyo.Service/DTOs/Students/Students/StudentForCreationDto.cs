@@ -11,8 +11,10 @@ public class StudentForCreationDto
     [MinLength(1), MaxLength(64)]
     public string LastName { get; set; }
 
-    [MinLength(1), MaxLength(64)]
-    public string TelegramUserName { get; set; }
+    [StrongPasswordAttribute]
+    public string Password { get; set; }
+
+    public string? TelegramUserName { get; set; }
 
     [Required]
     public long BranchId { get; set; }

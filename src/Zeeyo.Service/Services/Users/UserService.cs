@@ -165,7 +165,7 @@ public class UserService : IUserService
         mappedData.UpdatedBy = HttpContextHelper.UserId;
 
         await _userRepository.UpdateAsync(mappedData);
-       
+
         return _mapper.Map<UserForResultDto>(mappedData);
     }
 
@@ -201,7 +201,7 @@ public class UserService : IUserService
     public async Task<IEnumerable<UserForResultDto>> RetrieveAllAsync(PaginationParams @params)
     {
         var userData = await _userRepository
-            .SelectAll(u => !u.IsDeleted)
+            .SelectAll()
             //.Where(u => u.UserRoles.Any(ur => ur.Role.Name == "User"))
             .AsNoTracking()
             .ToPagedList(@params)
@@ -213,7 +213,7 @@ public class UserService : IUserService
     public async Task<IEnumerable<UserForResultDto>> RetrieveAllByBranchIdAsync(long branchId, PaginationParams @params)
     {
         var userData = await _userRepository
-            .SelectAll(u => !u.IsDeleted)
+            .SelectAll()
             .Where(u => u.BranchId == branchId)
             .AsNoTracking()
             .ToPagedList(@params)
@@ -260,7 +260,7 @@ public class UserService : IUserService
     public async Task<IEnumerable<UserForResultDto>> SearchAllAsync(string search, PaginationParams @params)
     {
         var userData = await _userRepository
-            .SelectAll(u => !u.IsDeleted)
+            .SelectAll()
             .Where(u => u.FirstName.ToLower().Contains(search.ToLower())
                                 || u.LastName.ToLower().Contains(search.ToLower())
                                 || u.PhoneNumber.Contains(search))
@@ -270,5 +270,4 @@ public class UserService : IUserService
 
         return _mapper.Map<IEnumerable<UserForResultDto>>(userData);
     }
-
 }

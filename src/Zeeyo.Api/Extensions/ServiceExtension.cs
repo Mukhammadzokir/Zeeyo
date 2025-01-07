@@ -8,6 +8,12 @@ using Microsoft.IdentityModel.Tokens;
 using Zeeyo.Service.Services.Branches;
 using Zeeyo.Service.Interfaces.Branches;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Zeeyo.Service.Interfaces.Users;
+using Zeeyo.Service.Services.Users;
+using Zeeyo.Service.Interfaces.Students;
+using Zeeyo.Service.Services.Students;
+using Zeeyo.Service.Interfaces.Teachers;
+using Zeeyo.Service.Services.Teachers;
 
 namespace Zeeyo.Api.Extensions;
 
@@ -22,7 +28,10 @@ public static class ServiceExtension
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         // Services
+        services.AddScoped<IUserService, UserService>();
         services.AddScoped<IBranchService, BranchService>();
+        services.AddScoped<IStudentService, StudentService>();
+        services.AddScoped<ITeacherService, TeacherService>();
     }
 
     public static void AddJwtService(this IServiceCollection services, IConfiguration configuration)

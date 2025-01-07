@@ -25,7 +25,7 @@ public class BranchService : IBranchService
     public async Task<BranchForResultDto> AddAsync(BranchForCreationDto dto)
     {
         var branchData = await _branchRepository
-            .SelectAsync(b => b.Name.ToLower() == dto.Name.ToLower() && !b.IsDeleted);
+            .SelectAsync(b => b.Name.ToLower() == dto.Name.ToLower());
         if (branchData is not null)
             throw new ZeeyoException(409, "Branch is already exist");
 
@@ -36,7 +36,7 @@ public class BranchService : IBranchService
     public async Task<BranchForResultDto> ModifyAsync(long id, BranchForUpdateDto dto)
     {
         var branchData = await _branchRepository
-            .SelectAsync(b => b.Id == id && !b.IsDeleted);
+            .SelectAsync(b => b.Id == id);
         if (branchData is null)
             throw new ZeeyoException(404, "Branch is not found");
 
@@ -52,7 +52,7 @@ public class BranchService : IBranchService
     public async Task<bool> RemoveAsync(long id)
     {
         var branchData = await _branchRepository
-            .SelectAsync(b => b.Id == id && !b.IsDeleted);
+            .SelectAsync(b => b.Id == id);
         if (branchData is null)
             throw new ZeeyoException(404, "Branch is not found");
 
@@ -64,7 +64,7 @@ public class BranchService : IBranchService
     public async Task<IEnumerable<BranchForResultDto>> RetrieveAllAsync(PaginationParams @params)
     {
         var branchData = await _branchRepository
-            .SelectAll(b => !b.IsDeleted)
+            .SelectAll()
             //.Include(b => b.Users.Where(u => !u.IsDeleted))
             //.Include(b => b.Courses.Where(c => !c.IsDeleted))
             .AsNoTracking()
@@ -77,7 +77,7 @@ public class BranchService : IBranchService
     public async Task<BranchForResultDto> RetrieveByIdAsync(long id)
     {
         var branchData = await _branchRepository
-            .SelectAll(b => !b.IsDeleted)
+            .SelectAll()
             .Where(b => b.Id == id)
             //.Include(b => b.Users.Where(u => !u.IsDeleted))
             //.Include(b => b.Courses.Where(c => !c.IsDeleted))
@@ -92,7 +92,7 @@ public class BranchService : IBranchService
     public async Task<IEnumerable<BranchForResultDto>> SearchAllAsync(string search, PaginationParams @params)
     {
         var branchData = await _branchRepository
-            .SelectAll(b => !b.IsDeleted)
+            .SelectAll()
             .Where(b => b.Name.ToLower().Contains(search.ToLower())
                 || b.Description.ToLower().Contains(search.ToLower())
                 || b.Address.ToLower().Contains(search.ToLower())

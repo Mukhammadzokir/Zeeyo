@@ -50,7 +50,15 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
 
     public IQueryable<TEntity> SelectAll(Expression<Func<TEntity, bool>> expression = null, string[] includes = null)
     {
-        var query = expression is null ? null : _dbSet.Where(expression);
+        ////var query = expression is null ? null : _dbSet.Where(expression);
+
+        // Start with a base query that excludes deleted items
+        var query = _dbSet.Where(e => !e.IsDeleted);
+
+        // Apply additional filtering if an expression is provided
+        if (expression is not null)
+            query = query.Where(expression);
+
         if (includes is not null)
         {
             foreach(var include in includes)

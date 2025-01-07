@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
+using Zeeyo.Service.Helpers;
+using Zeeyo.Domain.Extensions;
+using Zeeyo.Service.Exceptions;
 using Zeeyo.Data.IRepositories;
 using Microsoft.AspNetCore.Http;
 using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Service.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Service.Interfaces.Teachers;
 using Microsoft.Extensions.Configuration;
 using Zeeyo.Service.DTOs.Teachers.Teachers;
-using Zeeyo.Service.Exceptions;
-using Zeeyo.Service.Helpers;
-using Zeeyo.Service.DTOs.Students.Students;
-using Microsoft.EntityFrameworkCore;
-using Zeeyo.Domain.Extensions;
 
 namespace Zeeyo.Service.Services.Teachers;
 
@@ -201,7 +200,7 @@ public class TeacherService : ITeacherService
     public async Task<IEnumerable<TeacherForResultDto>> RetrieveAllAsync(PaginationParams @params)
     {
         var teacherData = await _teacherRepository
-           .SelectAll(t => !t.IsDeleted)
+           .SelectAll()
            .Where(t => t.UserRoles.Any(tr => tr.Role.Name == "Teacher"))
            .AsNoTracking()
            .ToPagedList(@params)
@@ -213,7 +212,7 @@ public class TeacherService : ITeacherService
     public async Task<IEnumerable<TeacherForResultDto>> RetrieveAllByBranchIdAsync(long branchId, PaginationParams @params)
     {
         var teacherData = await _teacherRepository
-            .SelectAll(t => !t.IsDeleted)
+            .SelectAll()
             .Where(t => t.BranchId == branchId && t.UserRoles.Any(tr => tr.Role.Name == "Teacher"))
             .AsNoTracking()
             .ToPagedList(@params)
@@ -262,7 +261,7 @@ public class TeacherService : ITeacherService
     public async Task<IEnumerable<TeacherForResultDto>> SearchAllAsync(string search, PaginationParams @params)
     {
         var teacherData = await _teacherRepository
-           .SelectAll(t => !t.IsDeleted)
+           .SelectAll()
            .Where(t => t.UserRoles.Any(tr => tr.Role.Name == "Teacher")
                                || t.FirstName.ToLower().Contains(search.ToLower())
                                || t.LastName.ToLower().Contains(search.ToLower())

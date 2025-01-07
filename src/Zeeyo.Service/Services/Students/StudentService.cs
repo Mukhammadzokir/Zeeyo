@@ -198,7 +198,7 @@ public class StudentService : IStudentService
     public async Task<IEnumerable<StudentForResultDto>> RetrieveAllAsync(PaginationParams @params)
     {
         var studentData = await _studentRepository
-            .SelectAll(s => !s.IsDeleted)
+            .SelectAll()
             .Where(s => s.UserRoles.Any(sr => sr.Role.Name == "Student"))
             .AsNoTracking()
             .ToPagedList(@params)
@@ -210,7 +210,7 @@ public class StudentService : IStudentService
     public async Task<IEnumerable<StudentForResultDto>> RetrieveAllByBranchIdAsync(long branchId, PaginationParams @params)
     {
         var studentData = await _studentRepository
-            .SelectAll(u => !u.IsDeleted)
+            .SelectAll()
             .Where(s => s.BranchId == branchId && s.UserRoles.Any(sr => sr.Role.Name == "Student"))
             .AsNoTracking()
             .ToPagedList(@params)
@@ -259,7 +259,7 @@ public class StudentService : IStudentService
     public async Task<IEnumerable<StudentForResultDto>> SearchAllAsync(string search, PaginationParams @params)
     {
         var studentData = await _studentRepository
-           .SelectAll(s => !s.IsDeleted)
+           .SelectAll()
            .Where(s => s.UserRoles.Any(sr => sr.Role.Name == "Student")
                                || s.FirstName.ToLower().Contains(search.ToLower())
                                || s.LastName.ToLower().Contains(search.ToLower())

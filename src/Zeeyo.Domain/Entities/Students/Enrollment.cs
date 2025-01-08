@@ -8,7 +8,7 @@ public class Enrollment : Auditable
 {
     public long StudentId { get; set; }
     public User Student { get; set; }
-    public long CourseId { get; set; }
-    public Course Course { get; set; }
+    public long GroupId { get; set; }
+    public Group Group { get; set; }
     public DateTime EnrollmentDate { get; set; }
 }

@@ -30,7 +30,8 @@ public class AppDbContext : DbContext
     DbSet<Attendance> Attendances { get; set; }
     DbSet<Enrollment> Enrollments { get; set; }
     DbSet<BranchCourse> BranchCourses { get; set; }
-    DbSet<TeacherGroup> TeachersCourse { get; set; }
+    DbSet<TeacherGroup> TeacherGroups { get; set; }
+    DbSet<StudentGroup> StudentGroups { get; set; }
     DbSet<RolePermission> RolePermissions { get; set; }
     DbSet<UserProfilePhoto> UsersProfilePhoto { get; set; }
 

@@ -101,9 +101,9 @@ public class MappingProfile : Profile
         CreateMap<LoginForCreationDto, LoginForResultDto>().ReverseMap();
 
         // TeacherCourse
-        CreateMap<TeacherGroup, TeacherCourseForResultDto>().ReverseMap();
-        CreateMap<TeacherGroup, TeacherCourseForUpdateDto>().ReverseMap();
-        CreateMap<TeacherGroup, TeacherCourseForCreationDto>().ReverseMap();
+        CreateMap<TeacherGroup, TeacherGroupForResultDto>().ReverseMap();
+        CreateMap<TeacherGroup, TeacherGroupForUpdateDto>().ReverseMap();
+        CreateMap<TeacherGroup, TeacherGroupForCreationDto>().ReverseMap();
 
         // RolePermission
         CreateMap<RolePermission, RolePermissionForResultDto>().ReverseMap();

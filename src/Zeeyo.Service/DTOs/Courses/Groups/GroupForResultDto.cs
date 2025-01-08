@@ -21,5 +21,5 @@ public class GroupForResultDto
     public ICollection<LessonForResultDto> Lessons { get; set; }
     public ICollection<EnrollmentForResultDto> Students { get; set; }
     public ICollection<AttendanceForResultDto> Attendances { get; set; }
-    public ICollection<TeacherCourseForResultDto> Teachers { get; set; }
+    public ICollection<TeacherGroupForResultDto> Teachers { get; set; }
 }

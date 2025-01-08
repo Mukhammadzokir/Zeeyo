@@ -10,10 +10,12 @@ using Zeeyo.Service.DTOs.Roles.Roles;
 using Zeeyo.Domain.Entities.Students;
 using Zeeyo.Domain.Entities.Teachers;
 using Zeeyo.Service.DTOs.Users.Users;
+using Zeeyo.Service.DTOs.Courses.Groups;
 using Zeeyo.Service.DTOs.Courses.Courses;
 using Zeeyo.Service.DTOs.Courses.Lessons;
 using Zeeyo.Service.DTOs.Users.UserCodes;
 using Zeeyo.Service.DTOs.Users.UserRoles;
+using Zeeyo.Service.DTOs.Branches.Branches;
 using Zeeyo.Service.DTOs.Roles.Permissions;
 using Zeeyo.Service.DTOs.Students.Students;
 using Zeeyo.Service.DTOs.Teachers.Teachers;
@@ -21,8 +23,8 @@ using EduNet.Backend.Service.DTOs.Roles.Roles;
 using Zeeyo.Service.DTOs.Students.Enrollments;
 using Zeeyo.Service.DTOs.Students.Attendances;
 using Zeeyo.Service.DTOs.Roles.RolePermissions;
+using Zeeyo.Service.DTOs.Branches.BranchCourses;
 using Zeeyo.Service.DTOs.Teachers.TeacherCourses;
-using Zeeyo.Service.DTOs.Branches.Branches;
 
 namespace Zeeyo.Service.Mappers;
 
@@ -30,16 +32,23 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // User
-        CreateMap<User, UserForResultDto>();
-        CreateMap<User, UserForUpdateDto>();
-        CreateMap<User, UserForCreationDto>();
-        CreateMap<UserProfilePhoto, UserProfilePhotoForResultDto>();
 
         // Role
-        CreateMap<Role, RoleForResultDto>();
-        CreateMap<Role, RoleForUpdateDto>();
-        CreateMap<Role, RoleForCreationDto>();
+        CreateMap<Role, RoleForResultDto>().ReverseMap();
+        CreateMap<Role, RoleForUpdateDto>().ReverseMap();
+        CreateMap<Role, RoleForCreationDto>().ReverseMap();
+
+        // User
+        CreateMap<User, UserForResultDto>().ReverseMap();
+        CreateMap<User, UserForUpdateDto>().ReverseMap();
+        CreateMap<User, UserForCreationDto>().ReverseMap();
+        CreateMap<UserProfilePhoto, UserProfilePhotoForResultDto>().ReverseMap();
+
+        // Group
+        CreateMap<Group, GroupForResultDto>().ReverseMap();
+        CreateMap<Group, GroupForUpdateDto>().ReverseMap();
+        CreateMap<Group, GroupForCreationDto>().ReverseMap();
+
 
         // Course
         CreateMap<Course, CourseForResultDto>().ReverseMap();
@@ -96,6 +105,11 @@ public class MappingProfile : Profile
         CreateMap<Enrollment, EnrollmentForResultDto>().ReverseMap();
         CreateMap<Enrollment, EnrollmentForUpdateDto>().ReverseMap();
         CreateMap<Enrollment, EnrollmentForCreationDto>().ReverseMap();
+
+        // BranchCourse
+        CreateMap<BranchCourse, BranchCourseForResultDto>().ReverseMap();
+        CreateMap<BranchCourse, BranchCourseForUpdateDto>().ReverseMap();
+        CreateMap<BranchCourse, BranchCourseForCreationDto>().ReverseMap();
 
         // Login
         CreateMap<LoginForCreationDto, LoginForResultDto>().ReverseMap();

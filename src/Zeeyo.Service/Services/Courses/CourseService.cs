@@ -5,7 +5,6 @@ using Zeeyo.Data.IRepositories;
 using Zeeyo.Service.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Courses;
-using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.Interfaces.Courses;
 using Zeeyo.Service.DTOs.Courses.Courses;
 
@@ -14,24 +13,17 @@ namespace Zeeyo.Service.Services.Courses;
 public class CourseService : ICourseService
 {
     private readonly IMapper _mapper;
-    private readonly IRepository<Branch> _branchRepository;
     private readonly IRepository<Course> _courseRepository;
 
     public CourseService(
         IMapper mapper,
-        IRepository<Branch> branchRepository,
         IRepository<Course> courseRepository)
     {
         _mapper = mapper;
-        _branchRepository = branchRepository;
         _courseRepository = courseRepository;
     }
     public async Task<CourseForResultDto> AddAsync(CourseForCreationDto dto)
     {
-        var branchData = await _branchRepository.SelectAsync(b => b.Id == dto.BranchId);
-        if (branchData is null)
-            throw new ZeeyoException(404, "Branch is not found");
-
         var courseData = await _courseRepository.SelectAsync(c => c.Name.ToLower() == dto.Name.ToLower());
         if (courseData is not null)
             throw new ZeeyoException(409, "Course is already exist");
@@ -43,10 +35,6 @@ public class CourseService : ICourseService
 
     public async Task<CourseForResultDto> ModifyAsync(long id, CourseForUpdateDto dto)
     {
-        var branchData = await _branchRepository.SelectAsync(b => b.Id == dto.BranchId);
-        if (branchData is null)
-            throw new ZeeyoException(404, "Branch is not found");
-
         var courseData = await _courseRepository.SelectAsync(c => c.Id == id);
         if (courseData is null)
             throw new ZeeyoException(404, "Course is not found");
@@ -93,7 +81,7 @@ public class CourseService : ICourseService
         var courseData = await _courseRepository
             .SelectAll()
             .Where(c => c.Name.ToLower().Contains(search.ToLower())
-                    || c.Description.ToLower().Contains(search.ToLower()))
+                    || c.Price.Equals(search))
             .AsNoTracking()
             .ToPagedList(@params)
             .ToListAsync();

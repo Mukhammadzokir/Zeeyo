@@ -4,11 +4,11 @@ using Zeeyo.Domain.Entities.Courses;
 
 namespace Zeeyo.Domain.Entities.Teachers;
 
-public class TeacherCourse : Auditable
+public class TeacherGroup : Auditable
 {
     public long TeacherId { get; set; }
     public User Teacher { get; set; }
-    public long CourseId { get; set; }
-    public Course Course { get; set; }
+    public long GroupId { get; set; }
+    public Group Group { get; set; }
     public DateTime Date { get; set; }
 }

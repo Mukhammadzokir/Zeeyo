@@ -20,7 +20,7 @@ public class StudentForResultDto
     public DateTime DateOfBirth { get; set; }
     public string IsStudentGraduated { get; set; }
     public ICollection<PaymentForResultDto> StudentPayments { get; set; }
-    public ICollection<EnrollmentForResultDto> StudentCourses { get; set; }
+    public ICollection<EnrollmentForResultDto> StudentGroups { get; set; }
     public StudentProfilePhotoForResultDto UserProfilePhoto { get; set; }
     public ICollection<AttendanceForResultDto> StudentAttendances { get; set; }
 }

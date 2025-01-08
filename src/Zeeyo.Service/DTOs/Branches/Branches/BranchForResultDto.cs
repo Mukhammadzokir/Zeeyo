@@ -1,7 +1,7 @@
 ﻿using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Service.DTOs.Courses.Courses;
 
-namespace Zeeyo.Service.DTOs.Branches;
+namespace Zeeyo.Service.DTOs.Branches.Branches;
 
 public class BranchForResultDto
 {

@@ -3,11 +3,11 @@ using Zeeyo.Service.Helpers;
 using Zeeyo.Domain.Extensions;
 using Zeeyo.Service.Exceptions;
 using Zeeyo.Data.IRepositories;
-using Zeeyo.Service.DTOs.Branches;
 using Zeeyo.Service.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.Interfaces.Branches;
+using Zeeyo.Service.DTOs.Branches.Branches;
 
 namespace Zeeyo.Service.Services.Branches;
 

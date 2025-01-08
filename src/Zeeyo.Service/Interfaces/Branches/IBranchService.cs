@@ -1,5 +1,5 @@
-﻿using Zeeyo.Service.DTOs.Branches;
-using Zeeyo.Service.Configurations;
+﻿using Zeeyo.Service.Configurations;
+using Zeeyo.Service.DTOs.Branches.Branches;
 
 namespace Zeeyo.Service.Interfaces.Branches;
 

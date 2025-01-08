@@ -15,5 +15,5 @@ public class TeacherForResultDto
     public long BranchId { get; set; }
     public Branch Branch { get; set; }
     public TeacherProfilePhotoForResultDto UserProfilePhoto { get; set; }
-    public ICollection<TeacherCourseForResultDto> TeacherCourses { get; set; }
+    public ICollection<TeacherGroupForResultDto> TeacherGroups { get; set; }
 }

@@ -18,6 +18,7 @@ public class AppDbContext : DbContext
     DbSet<User> Users { get; set; }
     DbSet<Role> Roles { get; set; }
     DbSet<Asset> Assets { get; set; }
+    DbSet<Group> Groups { get; set; }
     DbSet<Course> Courses { get; set; }
     DbSet<Lesson> Lessons { get; set; }
     DbSet<Branch> Branches { get; set; }
@@ -28,7 +29,9 @@ public class AppDbContext : DbContext
     DbSet<Permission> Permissions { get; set; }
     DbSet<Attendance> Attendances { get; set; }
     DbSet<Enrollment> Enrollments { get; set; }
-    DbSet<TeacherCourse> TeachersCourse { get; set; }
+    DbSet<BranchCourse> BranchCourses { get; set; }
+    DbSet<TeacherGroup> TeacherGroups { get; set; }
+    DbSet<StudentGroup> StudentGroups { get; set; }
     DbSet<RolePermission> RolePermissions { get; set; }
     DbSet<UserProfilePhoto> UsersProfilePhoto { get; set; }
 

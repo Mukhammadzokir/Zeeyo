@@ -1,9 +1,9 @@
 ﻿using Zeeyo.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Zeeyo.Service.DTOs.Branches;
 using Zeeyo.Service.Configurations;
 using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.Interfaces.Branches;
+using Zeeyo.Service.DTOs.Branches.Branches;
 
 namespace Zeeyo.Api.Controllers.Branches;
 

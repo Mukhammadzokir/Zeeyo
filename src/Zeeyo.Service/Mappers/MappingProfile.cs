@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Zeeyo.Service.DTOs.Logins;
-using Zeeyo.Service.DTOs.Branches;
 using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Service.DTOs.Payments;
 using Zeeyo.Domain.Entities.Roles;
@@ -23,6 +22,7 @@ using Zeeyo.Service.DTOs.Students.Enrollments;
 using Zeeyo.Service.DTOs.Students.Attendances;
 using Zeeyo.Service.DTOs.Roles.RolePermissions;
 using Zeeyo.Service.DTOs.Teachers.TeacherCourses;
+using Zeeyo.Service.DTOs.Branches.Branches;
 
 namespace Zeeyo.Service.Mappers;
 
@@ -101,9 +101,9 @@ public class MappingProfile : Profile
         CreateMap<LoginForCreationDto, LoginForResultDto>().ReverseMap();
 
         // TeacherCourse
-        CreateMap<TeacherCourse, TeacherCourseForResultDto>().ReverseMap();
-        CreateMap<TeacherCourse, TeacherCourseForUpdateDto>().ReverseMap();
-        CreateMap<TeacherCourse, TeacherCourseForCreationDto>().ReverseMap();
+        CreateMap<TeacherGroup, TeacherGroupForResultDto>().ReverseMap();
+        CreateMap<TeacherGroup, TeacherGroupForUpdateDto>().ReverseMap();
+        CreateMap<TeacherGroup, TeacherGroupForCreationDto>().ReverseMap();
 
         // RolePermission
         CreateMap<RolePermission, RolePermissionForResultDto>().ReverseMap();

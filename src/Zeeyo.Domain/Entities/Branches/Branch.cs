@@ -1,6 +1,5 @@
 ﻿using Zeeyo.Domain.Commons;
 using Zeeyo.Domain.Entities.Users;
-using Zeeyo.Domain.Entities.Courses;
 
 namespace Zeeyo.Domain.Entities.Branches;
 
@@ -13,5 +12,5 @@ public class Branch : Auditable
     public string Longitude { get; set; }
     public string Latitude { get; set; }
     public ICollection<User> Users { get; set; }
-    public ICollection<Course> Courses { get; set; }
+    public ICollection<BranchCourse> Courses { get; set; }
 }

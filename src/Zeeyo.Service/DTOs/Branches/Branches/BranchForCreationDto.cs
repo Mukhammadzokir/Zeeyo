@@ -1,4 +1,4 @@
-﻿namespace Zeeyo.Service.DTOs.Branches;
+﻿namespace Zeeyo.Service.DTOs.Branches.Branches;
 
 public class BranchForCreationDto
 {

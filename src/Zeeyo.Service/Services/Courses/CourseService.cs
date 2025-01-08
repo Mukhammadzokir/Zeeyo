@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
+using Zeeyo.Domain.Extensions;
+using Zeeyo.Service.Exceptions;
 using Zeeyo.Data.IRepositories;
 using Zeeyo.Service.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Courses;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.Interfaces.Courses;
 using Zeeyo.Service.DTOs.Courses.Courses;
-using Zeeyo.Service.Exceptions;
-using Microsoft.EntityFrameworkCore;
-using Zeeyo.Domain.Extensions;
 
 namespace Zeeyo.Service.Services.Courses;
 

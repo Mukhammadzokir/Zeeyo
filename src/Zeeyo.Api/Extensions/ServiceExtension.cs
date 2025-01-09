@@ -4,16 +4,18 @@ using Zeeyo.Service.Mappers;
 using Zeeyo.Data.Repositories;
 using Microsoft.OpenApi.Models;
 using Zeeyo.Data.IRepositories;
-using Microsoft.IdentityModel.Tokens;
-using Zeeyo.Service.Services.Branches;
-using Zeeyo.Service.Interfaces.Branches;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Zeeyo.Service.Interfaces.Users;
 using Zeeyo.Service.Services.Users;
-using Zeeyo.Service.Interfaces.Students;
+using Microsoft.IdentityModel.Tokens;
+using Zeeyo.Service.Interfaces.Users;
+using Zeeyo.Service.Services.Courses;
+using Zeeyo.Service.Services.Branches;
 using Zeeyo.Service.Services.Students;
-using Zeeyo.Service.Interfaces.Teachers;
 using Zeeyo.Service.Services.Teachers;
+using Zeeyo.Service.Interfaces.Courses;
+using Zeeyo.Service.Interfaces.Branches;
+using Zeeyo.Service.Interfaces.Teachers;
+using Zeeyo.Service.Interfaces.Students;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Zeeyo.Api.Extensions;
 
@@ -30,6 +32,7 @@ public static class ServiceExtension
         // Services
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IBranchService, BranchService>();
+        services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ITeacherService, TeacherService>();
     }

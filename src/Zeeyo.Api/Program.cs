@@ -2,6 +2,7 @@ using Serilog;
 using Zeeyo.Api.Extensions;
 using Zeeyo.Data.DbContexts;
 using Zeeyo.Api.MiddleWares;
+using Zeeyo.Service.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Zeeyo.Api;
@@ -42,6 +43,9 @@ public class Program
 
         var app = builder.Build();
 
+        // Getting wwwroot path
+        EnvironmentHelper.WebRootPath = Path.GetFullPath("wwwroot");
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -49,13 +53,14 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseStaticFiles();
         app.UseHttpsRedirection();
-
-        app.UseAuthentication();
-        app.UseAuthorization();
 
         //// MiddleWare
         app.UseMiddleware<ExceptionHandlerMiddleWare>();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapControllers();
 

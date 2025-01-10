@@ -121,7 +121,7 @@ public class PaymentService : IPaymentService
     {
         var paymentData = await _paymentRepository
             .SelectAll()
-            .Where(p => p.Date.ToString().Contains(search.ToString()))
+            .Where(p => p.Date.ToString().Contains(search.ToString()) || p.StudentId.ToString() == search)
             .AsNoTracking()
             .ToPagedList(@params)
             .ToListAsync();

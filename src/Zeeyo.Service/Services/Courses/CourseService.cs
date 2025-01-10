@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Courses;
 using Zeeyo.Service.Interfaces.Courses;
 using Zeeyo.Service.DTOs.Courses.Courses;
+using Zeeyo.Service.Helpers;
 
 namespace Zeeyo.Service.Services.Courses;
 
@@ -29,6 +30,7 @@ public class CourseService : ICourseService
             throw new ZeeyoException(409, "Course is already exist");
 
         var mappedData = _mapper.Map<Course>(dto);
+        mappedData.CreatedAt = TimeHelper.GetCurrentServerTime();
 
         return _mapper.Map<CourseForResultDto>(await _courseRepository.InsertAsync(mappedData));
     }
@@ -40,7 +42,8 @@ public class CourseService : ICourseService
             throw new ZeeyoException(404, "Course is not found");
 
         var mappedData = _mapper.Map(dto, courseData);
-        mappedData.UpdatedAt = DateTime.UtcNow;
+        mappedData.DeletedBy = HttpContextHelper.UserId;
+        mappedData.UpdatedAt = TimeHelper.GetCurrentServerTime();
 
         await _courseRepository.UpdateAsync(mappedData);
 
@@ -52,6 +55,8 @@ public class CourseService : ICourseService
         var courseData = await _courseRepository.SelectAsync(c => c.Id == id);
         if (courseData is null)
             throw new ZeeyoException(404, "Course is not found");
+
+        courseData.DeletedBy = HttpContextHelper.UserId;
 
         return await _courseRepository.DeleteAsync(id);
     }

@@ -175,6 +175,8 @@ public class TeacherService : ITeacherService
         if (teacherData is null)
             throw new ZeeyoException(404, "Teacher is not found");
 
+        teacherData.DeletedBy = HttpContextHelper.UserId;
+
         return await _teacherRepository.DeleteAsync(id);
     }
 
@@ -190,11 +192,9 @@ public class TeacherService : ITeacherService
         if (teacherProfilePhotoData is null)
             throw new ZeeyoException(404, "TeacherProfilePhoto is not found");
 
-        var teacherProfilePhotoId = (await _teacherProfilePhotoRepository
-            .SelectAsync(tp => tp.Id == teacherId))
-            .Id;
+        teacherProfilePhotoData.DeletedBy = HttpContextHelper.UserId;
 
-        return await _teacherProfilePhotoRepository.DeleteAsync(teacherProfilePhotoId);
+        return await _teacherProfilePhotoRepository.DeleteAsync(teacherProfilePhotoData.Id);
     }
 
     public async Task<IEnumerable<TeacherForResultDto>> RetrieveAllAsync(PaginationParams @params)

@@ -176,6 +176,8 @@ public class UserService : IUserService
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");
 
+        userData.DeletedBy = HttpContextHelper.UserId;
+
         return await _userRepository.DeleteAsync(id);
     }
 
@@ -191,11 +193,9 @@ public class UserService : IUserService
         if (userProfilePhotoData is null)
             throw new ZeeyoException(404, "UserProfilePhoto is not found");
 
-        var userProfilePhotoId = (await _userProfilePhotoRepository
-            .SelectAsync(up => up.Id == userId))
-            .Id;
+        userProfilePhotoData.DeletedBy = HttpContextHelper.UserId;
 
-        return await _userProfilePhotoRepository.DeleteAsync(userProfilePhotoId);
+        return await _userProfilePhotoRepository.DeleteAsync(userProfilePhotoData.Id);
     }
 
     public async Task<IEnumerable<UserForResultDto>> RetrieveAllAsync(PaginationParams @params)

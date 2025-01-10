@@ -30,6 +30,8 @@ public class BranchService : IBranchService
             throw new ZeeyoException(409, "Branch is already exist");
 
         var mappedData = _mapper.Map<Branch>(dto);
+        mappedData.CreatedAt = TimeHelper.GetCurrentServerTime();
+
         return _mapper.Map<BranchForResultDto>(await _branchRepository.InsertAsync(mappedData));
     }
 
@@ -41,7 +43,7 @@ public class BranchService : IBranchService
             throw new ZeeyoException(404, "Branch is not found");
 
         var mappedData = _mapper.Map(dto, branchData);
-        mappedData.UpdatedAt = DateTime.UtcNow;
+        mappedData.UpdatedAt = TimeHelper.GetCurrentServerTime();
         mappedData.UpdatedBy = HttpContextHelper.UserId;
 
         await _branchRepository.UpdateAsync(mappedData);

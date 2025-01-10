@@ -173,6 +173,7 @@ public class StudentService : IStudentService
         if (studentData is null)
             throw new ZeeyoException(404, "Student is not found");
 
+        studentData.DeletedAt = TimeHelper.GetCurrentServerTime();
         studentData.DeletedBy = HttpContextHelper.UserId;
 
         return await _studentRepository.DeleteAsync(id);
@@ -190,6 +191,7 @@ public class StudentService : IStudentService
         if (studentProfilePhotoData is null)
             throw new ZeeyoException(404, "StudentProfilePhoto is not found");
 
+        studentProfilePhotoData.DeletedAt = TimeHelper.GetCurrentServerTime();
         studentProfilePhotoData.DeletedBy = HttpContextHelper.UserId;
 
         return await _studentProfilePhotoRepository.DeleteAsync(studentProfilePhotoData.Id);

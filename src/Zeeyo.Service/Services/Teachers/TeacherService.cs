@@ -174,7 +174,8 @@ public class TeacherService : ITeacherService
 
         if (teacherData is null)
             throw new ZeeyoException(404, "Teacher is not found");
-
+        
+        teacherData.DeletedAt = TimeHelper.GetCurrentServerTime();
         teacherData.DeletedBy = HttpContextHelper.UserId;
 
         return await _teacherRepository.DeleteAsync(id);
@@ -192,6 +193,7 @@ public class TeacherService : ITeacherService
         if (teacherProfilePhotoData is null)
             throw new ZeeyoException(404, "TeacherProfilePhoto is not found");
 
+        teacherProfilePhotoData.DeletedAt = TimeHelper.GetCurrentServerTime();
         teacherProfilePhotoData.DeletedBy = HttpContextHelper.UserId;
 
         return await _teacherProfilePhotoRepository.DeleteAsync(teacherProfilePhotoData.Id);

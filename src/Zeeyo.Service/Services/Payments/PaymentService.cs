@@ -74,6 +74,7 @@ public class PaymentService : IPaymentService
         if (paymentData is null)
             throw new ZeeyoException(404, "Payment is not found");
 
+        paymentData.DeletedAt = TimeHelper.GetCurrentServerTime();
         paymentData.DeletedBy = HttpContextHelper.UserId;
 
         return await _paymentRepository.DeleteAsync(id);
@@ -106,11 +107,7 @@ public class PaymentService : IPaymentService
     public async Task<PaymentForResultDto> RetrieveByIdAsync(long id)
     {
         var paymentData = await _paymentRepository
-            .SelectAll()
-            //.Include(p => p.Student)
-            //.Include(p => p.Branch)
-            .AsNoTracking()
-            .FirstOrDefaultAsync();
+            .SelectAsync(p => p.Id == id);
         if (paymentData is null)
             throw new ZeeyoException(404, "Payment is not found");
 

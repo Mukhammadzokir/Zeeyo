@@ -52,7 +52,7 @@ public class LessonService : ILessonService
             throw new ZeeyoException(404, "Group is not found");
 
         var lessonData = await _lessonRepository
-            .SelectAsync(c => c.Id == id && !c.IsDeleted);
+            .SelectAsync(c => c.Id == id);
         if (lessonData is null)
             throw new ZeeyoException(404, "Lesson is not found");
 
@@ -68,10 +68,11 @@ public class LessonService : ILessonService
     public async Task<bool> RemoveAsync(long id)
     {
         var lessonData = await _lessonRepository
-            .SelectAsync(l => l.Id == id && !l.IsDeleted);
+            .SelectAsync(l => l.Id == id);
         if (lessonData is null)
             throw new ZeeyoException(404, "Lesson is not found");
 
+        lessonData.DeletedAt = TimeHelper.GetCurrentServerTime();
         lessonData.DeletedBy = HttpContextHelper.UserId;
 
         return await _lessonRepository.DeleteAsync(id);

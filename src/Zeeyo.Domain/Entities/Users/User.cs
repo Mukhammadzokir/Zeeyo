@@ -13,13 +13,13 @@ public class User : Auditable
     public long BranchId { get; set; }
     public Branch Branch { get; set; }
     public string PhoneNumber { get; set; }
-    //public string Email { get; set; }
     public string Password { get; set; }
     public string Salt { get; set; }
-    public string RefreshToken { get; set; }
-    public DateTime ExpireDate { get; set; }
+    //public string Email { get; set; }
+    //public string RefreshToken { get; set; }
+    //public DateTime ExpireDate { get; set; }
+    //public bool IsVerified { get; set; } = false;
     public DateTime? DateOfBirth { get; set; }
-    public bool IsVerified { get; set; } = false;
     public string? TelegramUserName { get; set; }
     public string? TeacherSpecialization { get; set; }
     public bool? IsStudentGraduated { get; set; } = false;

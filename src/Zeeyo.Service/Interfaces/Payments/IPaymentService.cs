@@ -1,0 +1,15 @@
+﻿using Zeeyo.Service.DTOs.Payments;
+using Zeeyo.Service.Configurations;
+
+namespace Zeeyo.Service.Interfaces.Payments;
+
+public interface IPaymentService
+{
+    Task<bool> RemoveAsync(long id);
+    Task<PaymentForResultDto> RetrieveByIdAsync(long id);
+    Task<PaymentForResultDto> AddAsync(PaymentForCreationDto dto);
+    Task<PaymentForResultDto> ModifyAsync(long id, PaymentForUpdateDto dto);
+    Task<IEnumerable<PaymentForResultDto>> RetrieveAllAsync(PaginationParams @params);
+    Task<IEnumerable<PaymentForResultDto>> SearchAllAsync(string search, PaginationParams @params);
+    Task<IEnumerable<PaymentForResultDto>> RetrieveAllByStudentIdAsync(long studentId, PaginationParams @params);
+}

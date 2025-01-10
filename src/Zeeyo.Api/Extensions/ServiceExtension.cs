@@ -16,6 +16,10 @@ using Zeeyo.Service.Interfaces.Branches;
 using Zeeyo.Service.Interfaces.Teachers;
 using Zeeyo.Service.Interfaces.Students;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Zeeyo.Service.Interfaces.Accounts;
+using Zeeyo.Service.Services.Accounts;
+using Zeeyo.Service.Interfaces.Auth;
+using Zeeyo.Service.Services.Auth;
 
 namespace Zeeyo.Api.Extensions;
 
@@ -31,10 +35,12 @@ public static class ServiceExtension
 
         // Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IBranchService, BranchService>();
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ITeacherService, TeacherService>();
+        services.AddScoped<IAccountService, AccountService>();
     }
 
     public static void AddJwtService(this IServiceCollection services, IConfiguration configuration)

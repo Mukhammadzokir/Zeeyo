@@ -35,7 +35,7 @@ public class UsersController : BaseController
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpPost("user/{userId}/profilePhoto")]
+    [HttpPost("{userId}/profilePhoto")]
     public async Task<IActionResult> PostProfilePhotoAsync([FromRoute(Name = "userId")] long userId, FormFile formFile)
         => Ok(new Response
         {
@@ -63,7 +63,7 @@ public class UsersController : BaseController
     /// </summary>
     /// <param name="params"></param>
     /// <returns></returns>
-    [HttpGet("branch/{branchId}/users")]
+    [HttpGet("{branchId}/users")]
     public async Task<IActionResult> GetAllByBranchAsync([FromRoute(Name = "branchId")] long branchId, [FromQuery] PaginationParams @params)
         => Ok(new Response
         {
@@ -91,7 +91,7 @@ public class UsersController : BaseController
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("user/{userId}/profilePhoto")]
+    [HttpGet("{userId}/profilePhoto")]
     public async Task<IActionResult> GetProfilePhotoAsync([FromRoute(Name = "userId")] long userId)
         => Ok(new Response
         {
@@ -148,7 +148,7 @@ public class UsersController : BaseController
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpDelete("user/{userId}/profilePhoto")]
+    [HttpDelete("{userId}/profilePhoto")]
     public async Task<IActionResult> DeleteProfilePhotoAsync([FromRoute(Name = "userId")] long userId)
         => Ok(new Response
         {
@@ -163,7 +163,7 @@ public class UsersController : BaseController
     /// <param name="search"></param>
     /// <param name="params"></param>
     /// <returns></returns>
-    [HttpGet("users/{search}")]
+    [HttpGet("{search}")]
     public async Task<IActionResult> GetAllBySearchAsync([FromQuery(Name = "search")] string search, [FromQuery] PaginationParams @params)
         => Ok(new Response
         {

@@ -4,9 +4,11 @@ using Zeeyo.Service.Configurations;
 using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.Interfaces.Branches;
 using Zeeyo.Service.DTOs.Branches.Branches;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Zeeyo.Api.Controllers.Branches;
 
+//[Authorize]
 public class BranchesController : BaseController
 {
     private readonly IBranchService _branchService;

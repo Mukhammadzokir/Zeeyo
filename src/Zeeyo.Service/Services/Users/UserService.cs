@@ -176,6 +176,7 @@ public class UserService : IUserService
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");
 
+        userData.DeletedAt = TimeHelper.GetCurrentServerTime();
         userData.DeletedBy = HttpContextHelper.UserId;
 
         return await _userRepository.DeleteAsync(id);
@@ -193,6 +194,7 @@ public class UserService : IUserService
         if (userProfilePhotoData is null)
             throw new ZeeyoException(404, "UserProfilePhoto is not found");
 
+        userProfilePhotoData.DeletedAt = TimeHelper.GetCurrentServerTime();
         userProfilePhotoData.DeletedBy = HttpContextHelper.UserId;
 
         return await _userProfilePhotoRepository.DeleteAsync(userProfilePhotoData.Id);

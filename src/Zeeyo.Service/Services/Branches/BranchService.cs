@@ -58,6 +58,7 @@ public class BranchService : IBranchService
         if (branchData is null)
             throw new ZeeyoException(404, "Branch is not found");
 
+        branchData.DeletedAt = TimeHelper.GetCurrentServerTime();
         branchData.DeletedBy = HttpContextHelper.UserId;
          
         return await _branchRepository.DeleteAsync(id);

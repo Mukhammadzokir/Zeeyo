@@ -56,6 +56,7 @@ public class CourseService : ICourseService
         if (courseData is null)
             throw new ZeeyoException(404, "Course is not found");
 
+        courseData.DeletedAt = TimeHelper.GetCurrentServerTime();
         courseData.DeletedBy = HttpContextHelper.UserId;
 
         return await _courseRepository.DeleteAsync(id);

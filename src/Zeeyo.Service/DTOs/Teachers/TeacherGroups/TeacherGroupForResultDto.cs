@@ -1,7 +1,7 @@
 ﻿using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Domain.Entities.Courses;
 
-namespace Zeeyo.Service.DTOs.Teachers.TeacherCourses;
+namespace Zeeyo.Service.DTOs.Teachers.TeacherGroups;
 
 public class TeacherGroupForResultDto
 {

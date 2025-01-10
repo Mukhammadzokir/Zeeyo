@@ -24,7 +24,7 @@ using Zeeyo.Service.DTOs.Students.Enrollments;
 using Zeeyo.Service.DTOs.Students.Attendances;
 using Zeeyo.Service.DTOs.Roles.RolePermissions;
 using Zeeyo.Service.DTOs.Branches.BranchCourses;
-using Zeeyo.Service.DTOs.Teachers.TeacherCourses;
+using Zeeyo.Service.DTOs.Teachers.TeacherGroups;
 
 namespace Zeeyo.Service.Mappers;
 

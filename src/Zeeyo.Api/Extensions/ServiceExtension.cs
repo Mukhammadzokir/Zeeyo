@@ -6,10 +6,12 @@ using Microsoft.OpenApi.Models;
 using Zeeyo.Data.IRepositories;
 using Zeeyo.Service.Services.Auth;
 using Zeeyo.Service.Services.Users;
+using Zeeyo.Service.Services.Roles;
 using Zeeyo.Service.Interfaces.Auth;
 using Microsoft.IdentityModel.Tokens;
 using Zeeyo.Service.Interfaces.Users;
 using Zeeyo.Service.Services.Courses;
+using Zeeyo.Service.Interfaces.Roles;
 using Zeeyo.Service.Services.Branches;
 using Zeeyo.Service.Services.Students;
 using Zeeyo.Service.Services.Teachers;
@@ -46,8 +48,10 @@ public static class ServiceExtension
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ITeacherService, TeacherService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IUserRoleService, UserRoleService>();
         services.AddScoped<IEnrollmentService, EnrollmentService>();
         services.AddScoped<IAttendanceService, AttendanceService>();
+        services.AddScoped<ITeacherGroupService, TeacherGroupService>();
         services.AddScoped<IBranchCourseService, BranchCourseService>();
     }
 

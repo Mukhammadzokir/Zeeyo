@@ -1,5 +1,5 @@
 ﻿using Zeeyo.Domain.Entities.Branches;
-using Zeeyo.Service.DTOs.Teachers.TeacherCourses;
+using Zeeyo.Service.DTOs.Teachers.TeacherGroups;
 
 namespace Zeeyo.Service.DTOs.Teachers.Teachers;
 

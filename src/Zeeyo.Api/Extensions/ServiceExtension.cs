@@ -41,11 +41,13 @@ public static class ServiceExtension
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<ILessonService, LessonService>();
         services.AddScoped<IBranchService, BranchService>();
-        services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ITeacherService, TeacherService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IEnrollmentService, EnrollmentService>();
+        services.AddScoped<IAttendanceService, AttendanceService>();
+        services.AddScoped<IBranchCourseService, BranchCourseService>();
     }
 
     public static void AddJwtService(this IServiceCollection services, IConfiguration configuration)

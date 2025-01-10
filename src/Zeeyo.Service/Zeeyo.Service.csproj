@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Roles\" />
+    <Folder Include="Services\Roles\" />
   </ItemGroup>
 
 </Project>

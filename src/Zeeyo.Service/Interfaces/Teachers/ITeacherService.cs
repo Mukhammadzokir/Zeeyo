@@ -20,7 +20,4 @@ public interface ITeacherService
     Task<bool> RemoveProfilePhotoAsync(long teacherId);
     Task<TeacherProfilePhotoForResultDto> RetrieveProfilePhotoAsync(long teacherId);
     Task<TeacherProfilePhotoForResultDto> AddProfilePhotoAsync(long teacherId, IFormFile formFile);
-    
-    Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto);
-    Task<bool> ForgetPasswordAsync(string PhoneNumber, string NewPassword, string ConfirmPassword);
 }

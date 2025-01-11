@@ -1,9 +1,8 @@
-﻿using Zeeyo.Domain.Entities.Branches;
-using Zeeyo.Domain.Entities.Courses;
+﻿using Zeeyo.Domain.Entities.Courses;
 using Zeeyo.Service.DTOs.Courses.Lessons;
 using Zeeyo.Service.DTOs.Students.Attendances;
 using Zeeyo.Service.DTOs.Students.Enrollments;
-using Zeeyo.Service.DTOs.Teachers.TeacherCourses;
+using Zeeyo.Service.DTOs.Teachers.TeacherGroups;
 
 namespace Zeeyo.Service.DTOs.Courses.Groups;
 

@@ -1,6 +1,6 @@
-﻿namespace Zeeyo.Service.DTOs.Teachers.TeacherCourses;
+﻿namespace Zeeyo.Service.DTOs.Teachers.TeacherGroups;
 
-public class TeacherGroupForUpdateDto
+public class TeacherGroupForCreationDto
 {
     public long TeacherId { get; set; }
     public long GroupId { get; set; }

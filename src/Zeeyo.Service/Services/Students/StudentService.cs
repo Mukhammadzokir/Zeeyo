@@ -8,7 +8,6 @@ using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Service.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Branches;
-using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Service.Interfaces.Students;
 using Microsoft.Extensions.Configuration;
 using Zeeyo.Service.DTOs.Students.Students;
@@ -106,43 +105,6 @@ public class StudentService : IStudentService
         var result = await _studentProfilePhotoRepository.InsertAsync(mappedAsset);
 
         return this._mapper.Map<StudentProfilePhotoForResultDto>(result);
-    }
-
-    public async Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto)
-    {
-        var studentData = await _studentRepository.SelectAsync(s => s.Id == id);
-        if (studentData is null || !PasswordHelper.Verify(dto.OldPassword, studentData.Salt, studentData.Password))
-            throw new ZeeyoException(404, "Student or Password is incorrect");
-        else if (dto.NewPassword != dto.ConfirmPassword)
-            throw new ZeeyoException(400, "New password and confirm password aren't equal");
-
-        var hash = PasswordHelper.Hash(dto.ConfirmPassword);
-        studentData.Salt = hash.Salt;
-        studentData.Password = hash.Hash;
-
-        await _studentRepository.UpdateAsync(studentData);
-
-        return true;
-    }
-
-    public async Task<bool> ForgetPasswordAsync(string PhoneNumber, string NewPassword, string ConfirmPassword)
-    {
-        var studentData = await _studentRepository.SelectAsync(s => s.PhoneNumber == PhoneNumber);
-
-        if (studentData is null)
-            throw new ZeeyoException(404, "Student not found");
-
-        if (NewPassword != ConfirmPassword)
-            throw new ZeeyoException(400, "New password and confirm password aren't equal");
-
-        var hash = PasswordHelper.Hash(NewPassword);
-
-        studentData.Salt = hash.Salt;
-        studentData.Password = hash.Hash;
-
-        await _studentRepository.UpdateAsync(studentData);
-
-        return true;
     }
 
     public async Task<StudentForResultDto> ModifyAsync(long id, StudentForUpdateDto dto)

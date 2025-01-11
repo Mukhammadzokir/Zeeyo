@@ -8,7 +8,6 @@ using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Service.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Branches;
-using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Service.Interfaces.Teachers;
 using Microsoft.Extensions.Configuration;
 using Zeeyo.Service.DTOs.Teachers.Teachers;
@@ -109,43 +108,6 @@ public class TeacherService : ITeacherService
         var result = await _teacherProfilePhotoRepository.InsertAsync(mappedAsset);
 
         return _mapper.Map<TeacherProfilePhotoForResultDto>(result);
-    }
-
-    public async Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto)
-    {
-        var teacherData = await _teacherRepository.SelectAsync(t => t.Id == id);
-        if (teacherData is null || !PasswordHelper.Verify(dto.OldPassword, teacherData.Salt, teacherData.Password))
-            throw new ZeeyoException(404, "Teacher or Password is incorrect");
-        else if (dto.NewPassword != dto.ConfirmPassword)
-            throw new ZeeyoException(400, "New password and confirm password aren't equal");
-
-        var hash = PasswordHelper.Hash(dto.ConfirmPassword);
-        teacherData.Salt = hash.Salt;
-        teacherData.Password = hash.Hash;
-
-        await _teacherRepository.UpdateAsync(teacherData);
-
-        return true;
-    }
-
-    public async Task<bool> ForgetPasswordAsync(string PhoneNumber, string NewPassword, string ConfirmPassword)
-    {
-        var teacherData = await _teacherRepository.SelectAsync(t => t.PhoneNumber == PhoneNumber);
-
-        if (teacherData is null)
-            throw new ZeeyoException(404, "Teacher not found");
-
-        if (NewPassword != ConfirmPassword)
-            throw new ZeeyoException(400, "New password and confirm password aren't equal");
-
-        var hash = PasswordHelper.Hash(NewPassword);
-
-        teacherData.Salt = hash.Salt;
-        teacherData.Password = hash.Hash;
-
-        await _teacherRepository.UpdateAsync(teacherData);
-
-        return true;
     }
 
     public async Task<TeacherForResultDto> ModifyAsync(long id, TeacherForUpdateDto dto)

@@ -39,6 +39,7 @@ public static class ServiceExtension
 
         // Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IGroupService, GroupService>();
         services.AddScoped<ICourseService, CourseService>();
@@ -49,10 +50,12 @@ public static class ServiceExtension
         services.AddScoped<ITeacherService, TeacherService>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IUserRoleService, UserRoleService>();
+        services.AddScoped<IPermissionService, PermissionService>();
         services.AddScoped<IEnrollmentService, EnrollmentService>();
         services.AddScoped<IAttendanceService, AttendanceService>();
         services.AddScoped<ITeacherGroupService, TeacherGroupService>();
         services.AddScoped<IBranchCourseService, BranchCourseService>();
+        services.AddScoped<IRolePermissionService, RolePermissionService>();
     }
 
     public static void AddJwtService(this IServiceCollection services, IConfiguration configuration)

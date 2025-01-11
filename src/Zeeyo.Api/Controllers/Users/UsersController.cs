@@ -77,7 +77,7 @@ public class UsersController : BaseController
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("{id}")]
+    [HttpGet("{id}/user")]
     public async Task<IActionResult> GetAsync([FromRoute(Name = "id")] long id)
         => Ok(new Response
         {

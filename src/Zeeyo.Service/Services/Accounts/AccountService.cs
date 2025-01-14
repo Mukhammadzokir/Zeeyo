@@ -18,7 +18,7 @@ public class AccountService : IAccountService
         _authService = authService;
         _userRepository = userRepository;
     }
-    public async Task<string> LoginAsync(LoginForCreationDto loginDto)
+    public async Task<LoginForResultDto> LoginAsync(LoginForCreationDto loginDto)
     {
         var user = await _userRepository.SelectAsync(x => x.PhoneNumber == loginDto.PhoneNumber);
         if (user is null)
@@ -28,6 +28,11 @@ public class AccountService : IAccountService
         if (hasherResult == false)
             throw new ZeeyoException(404, "Telefor raqam yoki parol xato kiritildi!");
 
-        return _authService.GenerateToken(user);
+        var tokenResult = _authService.GenerateToken(user);
+
+        return new LoginForResultDto
+        {
+            Token = tokenResult,
+        };
     }
 }

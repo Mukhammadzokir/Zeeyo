@@ -4,6 +4,6 @@ namespace Zeeyo.Service.Interfaces.Accounts;
 
 public interface IAccountService
 {
-    public Task<string> LoginAsync(LoginForCreationDto loginDto);
+    public Task<LoginForResultDto> LoginAsync(LoginForCreationDto loginDto);
 
 }

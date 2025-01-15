@@ -10,8 +10,8 @@ using Zeeyo.Service.Services.Roles;
 using Zeeyo.Service.Interfaces.Auth;
 using Microsoft.IdentityModel.Tokens;
 using Zeeyo.Service.Interfaces.Users;
-using Zeeyo.Service.Services.Courses;
 using Zeeyo.Service.Interfaces.Roles;
+using Zeeyo.Service.Services.Courses;
 using Zeeyo.Service.Services.Branches;
 using Zeeyo.Service.Services.Students;
 using Zeeyo.Service.Services.Teachers;
@@ -41,6 +41,7 @@ public static class ServiceExtension
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IGroupService, GroupService>();
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<ILessonService, LessonService>();

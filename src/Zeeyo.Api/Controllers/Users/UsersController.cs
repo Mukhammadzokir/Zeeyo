@@ -187,18 +187,18 @@ public class UsersController : BaseController
         });
 
     /// <summary>
-    /// To Create new password when forget password
+    /// To Reset new password when forget password
     /// </summary>
     /// <param name="PhoneNumber"></param>
     /// <param name="NewPassword"></param>
     /// <param name="ConfirmPassword"></param>
     /// <returns></returns>
     [HttpPut("forget-password")]
-    public async Task<IActionResult> ForgetPasswordAsync([Required] string PhoneNumber, [Required] string NewPassword, [Required] string ConfirmPassword)
+    public async Task<IActionResult> ResetPasswordAsync([Required] string PhoneNumber, [Required] string NewPassword, [Required] string ConfirmPassword)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _userService.ForgetPasswordAsync(PhoneNumber, NewPassword, ConfirmPassword)
+            Data = await _userService.ResetPasswordAsync(PhoneNumber, NewPassword, ConfirmPassword)
         });
 }

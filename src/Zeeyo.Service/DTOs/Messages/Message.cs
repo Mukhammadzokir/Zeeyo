@@ -1,8 +1,6 @@
-﻿using Zeeyo.Domain.Commons;
+﻿namespace Zeeyo.Service.DTOs.Messages;
 
-namespace Zeeyo.Domain.Entities.Messages;
-
-public class Message : Auditable
+public class Message
 {
     public string Subject { get; set; }
     public string Body { get; set; }

@@ -4,7 +4,6 @@ using Zeeyo.Domain.Entities.Assets;
 using Microsoft.EntityFrameworkCore;
 using Zeeyo.Domain.Entities.Courses;
 using Zeeyo.Domain.Entities.Branches;
-using Zeeyo.Domain.Entities.Messages;
 using Zeeyo.Domain.Entities.Payments;
 using Zeeyo.Domain.Entities.Students;
 using Zeeyo.Domain.Entities.Teachers;
@@ -23,7 +22,6 @@ public class AppDbContext : DbContext
     DbSet<Lesson> Lessons { get; set; }
     DbSet<Branch> Branches { get; set; }
     DbSet<Payment> Payments { get; set; }
-    DbSet<Message> Messages { get; set; }
     DbSet<UserCode> UserCodes { get; set; }
     DbSet<UserRole> UserRoles { get; set; }
     DbSet<Permission> Permissions { get; set; }

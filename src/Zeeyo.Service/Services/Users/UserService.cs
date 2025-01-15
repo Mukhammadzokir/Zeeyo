@@ -128,17 +128,24 @@ public class UserService : IUserService
         return true;
     }
 
-    public async Task<bool> ForgetPasswordAsync(string PhoneNumber, string NewPassword, string ConfirmPassword)
+    public async Task<bool> CheckUserAsync(string phoneNumber)
     {
-        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == PhoneNumber);
+        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumber);
+        if(userData is null)
+            return false;
+        return true;
+    }
 
+    public async Task<bool> ResetPasswordAsync(string phoneNumber, string newPassword, string confirmPassword)
+    {
+        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumber);
         if (userData is null)
-            throw new ZeeyoException(404, "User not found");
+            throw new ZeeyoException(404, "User is not found");
 
-        if (NewPassword != ConfirmPassword)
+        if (newPassword != confirmPassword)
             throw new ZeeyoException(400, "New password and confirm password aren't equal");
 
-        var hash = PasswordHelper.Hash(NewPassword);
+        var hash = PasswordHelper.Hash(newPassword);
 
         userData.Salt = hash.Salt;
         userData.Password = hash.Hash;

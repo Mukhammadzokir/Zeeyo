@@ -14,6 +14,9 @@ public class StudentForCreationDto
     [StrongPasswordAttribute]
     public string Password { get; set; }
 
+    [CustomEmailAddressAttribute]
+    public string Email { get; set; }
+
     public string? TelegramUserName { get; set; }
 
     [Required]

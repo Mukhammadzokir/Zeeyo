@@ -3,6 +3,7 @@ using Zeeyo.Service.DTOs.Payments;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.DTOs.Students.Attendances;
 using Zeeyo.Service.DTOs.Students.Enrollments;
+using Zeeyo.Service.Commons.Attributes;
 
 namespace Zeeyo.Service.DTOs.Students.Students;
 
@@ -18,6 +19,7 @@ public class StudentForResultDto
     public Branch Branch { get; set; }
     public string PhoneNumber { get; set; }
     public DateTime DateOfBirth { get; set; }
+    public string Email { get; set; }
     public string IsStudentGraduated { get; set; }
     public ICollection<PaymentForResultDto> StudentPayments { get; set; }
     public ICollection<EnrollmentForResultDto> StudentGroups { get; set; }

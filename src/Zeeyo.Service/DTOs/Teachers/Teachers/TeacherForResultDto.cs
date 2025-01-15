@@ -1,4 +1,5 @@
 ﻿using Zeeyo.Domain.Entities.Branches;
+using Zeeyo.Service.Commons.Attributes;
 using Zeeyo.Service.DTOs.Teachers.TeacherGroups;
 
 namespace Zeeyo.Service.DTOs.Teachers.Teachers;
@@ -12,6 +13,7 @@ public class TeacherForResultDto
     public string PhoneNumber { get; set; }
     public string TelegramUserName { get; set; }
     public DateTime DateOfBirth { get; set; }
+    public string Email { get; set; }
     public long BranchId { get; set; }
     public Branch Branch { get; set; }
     public TeacherProfilePhotoForResultDto UserProfilePhoto { get; set; }

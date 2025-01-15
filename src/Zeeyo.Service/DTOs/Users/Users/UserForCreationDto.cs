@@ -17,6 +17,9 @@ public class UserForCreationDto
     [StrongPasswordAttribute]
     public string Password { get; set; }
 
+    [CustomEmailAddressAttribute]
+    public string Email { get; set; }
+
     [Required]
     public long BranchId { get; set; }
 }

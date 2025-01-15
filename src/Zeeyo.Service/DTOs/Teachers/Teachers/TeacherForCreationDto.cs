@@ -20,6 +20,9 @@ public class TeacherForCreationDto
     [PhoneNumberAttribute]
     public string PhoneNumber { get; set; }
 
+    [CustomEmailAddressAttribute]
+    public string Email { get; set; }
+
     [MinLength(1), MaxLength(64)]
     public string TelegramUserName { get; set; }
     public DateTime DateOfBirth { get; set; }

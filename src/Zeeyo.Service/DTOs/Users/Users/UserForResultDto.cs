@@ -12,7 +12,7 @@ public class UserForResultDto
     public string LastName { get; set; }
     public long BranchId { get; set; }
     public string PhoneNumber { get; set; }
-    //public string Email { get; set; }
+    public string Email { get; set; }
     //public bool IsVerified { get; set; } = false;
     //public string RefreshToken { get; set; }
     //public DateTime ExpireDate { get; set; }

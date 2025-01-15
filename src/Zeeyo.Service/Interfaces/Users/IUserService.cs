@@ -21,5 +21,6 @@ public interface IUserService
     Task<UserProfilePhotoForResultDto> AddProfilePhotoAsync(long userId, IFormFile formFile);
 
     Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto);
-    Task<bool> ForgetPasswordAsync(string PhoneNumber, string NewPassword, string ConfirmPassword);
+    Task<bool> CheckUserAsync(string phoneNumber);
+    Task<bool> ResetPasswordAsync(string phoneNumber, string newPassword, string confirmPassword);
 }

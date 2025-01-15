@@ -41,6 +41,9 @@ public class Program
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+        builder.Services.AddMemoryCache();
+
         var app = builder.Build();
 
         // Getting wwwroot path
@@ -55,6 +58,9 @@ public class Program
 
         app.UseStaticFiles();
         app.UseHttpsRedirection();
+
+        // Init accessor
+        //app.InitAccessor();
 
         //// MiddleWare
         app.UseMiddleware<ExceptionHandlerMiddleWare>();

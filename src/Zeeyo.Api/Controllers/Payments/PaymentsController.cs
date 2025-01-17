@@ -1,36 +1,36 @@
 ﻿using Zeeyo.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Zeeyo.Service.DTOs.Payments;
 using Zeeyo.Service.Configurations;
 using Zeeyo.Api.Controllers.Commons;
-using Zeeyo.Service.Interfaces.Courses;
-using Zeeyo.Service.DTOs.Courses.Courses;
+using Zeeyo.Service.Interfaces.Payments;
 
-namespace Zeeyo.Api.Controllers.Courses;
+namespace Zeeyo.Api.Controllers.Payments;
 
-public class CoursesController : BaseController
+public class PaymentsController : BaseController
 {
-    private readonly ICourseService _courseService;
-    public CoursesController(ICourseService courseService)
+    private readonly IPaymentService _paymentService;
+    public PaymentsController(IPaymentService paymentService)
     {
-        _courseService = courseService;
+        _paymentService = paymentService;
     }
 
     /// <summary>
-    /// To Create course
+    /// To Create payment
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> PostAsync([FromBody] CourseForCreationDto dto)
+    public async Task<IActionResult> PostAsync([FromBody] PaymentForCreationDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _courseService.AddAsync(dto)
+            Data = await _paymentService.AddAsync(dto)
         });
 
     /// <summary>
-    /// To Get all courses
+    /// To Get all payments
     /// </summary>
     /// <param name="params"></param>
     /// <returns></returns>
@@ -40,11 +40,11 @@ public class CoursesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _courseService.RetrieveAllAsync(@params)
+            Data = await _paymentService.RetrieveAllAsync(@params)
         });
 
     /// <summary>
-    /// To Get course by id
+    /// To Get payment by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -54,26 +54,26 @@ public class CoursesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _courseService.RetrieveByIdAsync(id)
+            Data = await _paymentService.RetrieveByIdAsync(id)
         });
 
     /// <summary>
-    /// To update course by id
+    /// To update payment by id
     /// </summary>
     /// <param name="id"></param>
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAsync([FromRoute(Name = "id")] long id, [FromBody] CourseForUpdateDto dto)
+    public async Task<IActionResult> PutAsync([FromRoute(Name = "id")] long id, [FromBody] PaymentForUpdateDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _courseService.ModifyAsync(id, dto)
+            Data = await _paymentService.ModifyAsync(id, dto)
         });
 
     /// <summary>
-    /// To Delete course by id
+    /// To delete payment by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -83,11 +83,11 @@ public class CoursesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _courseService.RemoveAsync(id)
+            Data = await _paymentService.RemoveAsync(id)
         });
 
     /// <summary>
-    /// To get all courses by searching
+    /// To get all payments by searching
     /// </summary>
     /// <param name="search"></param>
     /// <param name="params"></param>
@@ -98,6 +98,22 @@ public class CoursesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _courseService.SearchAllAsync(search, @params)
+            Data = await _paymentService.SearchAllAsync(search, @params)
         });
+
+    // <summary>
+    /// To get all payments by studentId 
+    /// </summary>
+    /// <param name="search"></param>
+    /// <param name="params"></param>
+    /// <returns></returns>
+    [HttpGet("studentId")]
+    public async Task<IActionResult> GetAllPaymentByStudentAsync([FromQuery(Name = "studentId")] int studentId, [FromQuery] PaginationParams @params)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _paymentService.RetrieveAllByStudentIdAsync(studentId, @params)
+        });
+
 }

@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Zeeyo.Api.Controllers.Commons;
-using Zeeyo.Api.Models;
+﻿using Zeeyo.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 using Zeeyo.Service.Configurations;
-using Zeeyo.Service.DTOs.Branches.Branches;
-using Zeeyo.Service.DTOs.Courses.Lessons;
+using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.Interfaces.Courses;
+using Zeeyo.Service.DTOs.Courses.Lessons;
 
 namespace Zeeyo.Api.Controllers.Courses;
 

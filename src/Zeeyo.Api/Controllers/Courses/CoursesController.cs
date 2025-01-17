@@ -1,37 +1,38 @@
-﻿using Zeeyo.Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Zeeyo.Service.Configurations;
+﻿using Microsoft.AspNetCore.Mvc;
 using Zeeyo.Api.Controllers.Commons;
-using Zeeyo.Service.Interfaces.Branches;
+using Zeeyo.Api.Models;
+using Zeeyo.Service.Configurations;
 using Zeeyo.Service.DTOs.Branches.Branches;
+using Zeeyo.Service.DTOs.Courses.Courses;
+using Zeeyo.Service.Interfaces.Branches;
+using Zeeyo.Service.Interfaces.Courses;
 
-namespace Zeeyo.Api.Controllers.Branches;
+namespace Zeeyo.Api.Controllers.Courses;
 
-//[Authorize]
-public class BranchesController : BaseController
+public class CoursesController : BaseController
 {
-    private readonly IBranchService _branchService;
-    public BranchesController(IBranchService branchService)
+    private readonly ICourseService _courseService;
+    public CoursesController(ICourseService courseService)
     {
-        _branchService = branchService;
+        _courseService = courseService;
     }
 
     /// <summary>
-    /// To Create branch
+    /// To Create course
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> PostAsync([FromBody] BranchForCreationDto dto)
+    public async Task<IActionResult> PostAsync([FromBody] CourseForCreationDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _branchService.AddAsync(dto)
+            Data = await _courseService.AddAsync(dto)
         });
 
     /// <summary>
-    /// To Get all branches
+    /// To Get all courses
     /// </summary>
     /// <param name="params"></param>
     /// <returns></returns>
@@ -41,11 +42,11 @@ public class BranchesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _branchService.RetrieveAllAsync(@params)
+            Data = await _courseService.RetrieveAllAsync(@params)
         });
 
     /// <summary>
-    /// To Get branch by id
+    /// To Get course by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -55,26 +56,26 @@ public class BranchesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _branchService.RetrieveByIdAsync(id)
+            Data = await _courseService.RetrieveByIdAsync(id)
         });
 
     /// <summary>
-    /// To update branch by id
+    /// To update course by id
     /// </summary>
     /// <param name="id"></param>
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAsync([FromRoute(Name = "id")] long id, [FromBody] BranchForUpdateDto dto)
+    public async Task<IActionResult> PutAsync([FromRoute(Name = "id")] long id, [FromBody] CourseForUpdateDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _branchService.ModifyAsync(id, dto)
+            Data = await _courseService.ModifyAsync(id, dto)
         });
 
     /// <summary>
-    /// To delete by id
+    /// To Delete course by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -84,11 +85,11 @@ public class BranchesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _branchService.RemoveAsync(id)
+            Data = await _courseService.RemoveAsync(id)
         });
 
     /// <summary>
-    /// To get all branches by searching
+    /// To get all courses by searching
     /// </summary>
     /// <param name="search"></param>
     /// <param name="params"></param>
@@ -99,7 +100,6 @@ public class BranchesController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _branchService.SearchAllAsync(search, @params)
+            Data = await _courseService.SearchAllAsync(search, @params)
         });
-
 }

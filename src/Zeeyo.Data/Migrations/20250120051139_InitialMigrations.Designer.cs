@@ -12,8 +12,8 @@ using Zeeyo.Data.DbContexts;
 namespace Zeeyo.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250115120432_DeleteMessageEntitiesMigrations")]
-    partial class DeleteMessageEntitiesMigrations
+    [Migration("20250120051139_InitialMigrations")]
+    partial class InitialMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

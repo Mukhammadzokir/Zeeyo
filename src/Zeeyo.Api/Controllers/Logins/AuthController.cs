@@ -19,5 +19,10 @@ public class AuthController : BaseController
     [HttpPost]
     [Route("login")]
     public async ValueTask<IActionResult> login([FromBody] LoginForCreationDto loginDto)
-        => Ok( await _accountService.LoginAsync(loginDto));
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _accountService.LoginAsync(loginDto)
+        });
 }

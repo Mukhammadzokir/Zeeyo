@@ -4,6 +4,7 @@ using Zeeyo.Service.DTOs.Messages;
 using Zeeyo.Service.Interfaces.Accounts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Caching.Memory;
+using Zeeyo.Service.DTOs.Emails;
 
 namespace Zeeyo.Service.Services.Accounts;
 
@@ -18,11 +19,11 @@ public class EmailService : IEmailService
         this.configuration = configuration.GetSection("Email");
     }
 
-    public bool VerifyCode(string email, string code)
+    public bool VerifyCode(EmailCreationDto dto)
     {
-        var cashedValue = memoryCache.Get<string>(email);
+        var cashedValue = memoryCache.Get<string>(dto.Email);
 
-        if (cashedValue?.ToString() == code)
+        if (cashedValue?.ToString() == dto.Code)
             return true;
 
         return false;

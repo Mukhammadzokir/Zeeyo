@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.Interfaces.Accounts;
 using System.ComponentModel.DataAnnotations;
+using Zeeyo.Service.DTOs.Emails;
 
 namespace Zeeyo.Api.Controllers.Logins;
 
@@ -17,7 +18,7 @@ public class SendCodeByEmailsController : BaseController
 
     [HttpPost("send-code")]
 
-    public async Task<IActionResult> SendCodeByEmailAsync([EmailAddress, Required] string email)
+    public async Task<IActionResult> SendCodeByEmailAsync([EmailAddress, Required] [FromBody] string email)
         => Ok(new Response
         {
             StatusCode = 200,
@@ -28,12 +29,12 @@ public class SendCodeByEmailsController : BaseController
 
     [HttpPost("verify-code")]
 
-    public IActionResult VerifyCode([EmailAddress, Required] string email, [Required] string code)
+    public IActionResult VerifyCode([FromBody] EmailCreationDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _emailService.VerifyCode(email, code)
+            Data = _emailService.VerifyCode(dto)
         });
 }
 

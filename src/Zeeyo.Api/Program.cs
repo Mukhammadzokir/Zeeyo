@@ -62,7 +62,7 @@ public class Program
         // Init accessor
         //app.InitAccessor();
 
-        //// MiddleWare
+        //// Custom MiddleWare
         app.UseMiddleware<ExceptionHandlerMiddleWare>();
 
         app.UseAuthentication();

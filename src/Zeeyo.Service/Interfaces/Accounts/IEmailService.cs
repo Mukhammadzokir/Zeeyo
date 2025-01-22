@@ -1,4 +1,5 @@
-﻿using Zeeyo.Service.DTOs.Messages;
+﻿using Zeeyo.Service.DTOs.Emails;
+using Zeeyo.Service.DTOs.Messages;
 namespace Zeeyo.Service.Interfaces.Accounts;
 
 public interface IEmailService
@@ -7,5 +8,5 @@ public interface IEmailService
 
     public Task<bool> SendCodeByEmailAsync(string email);
 
-    public bool VerifyCode(string email, string code);
+    public bool VerifyCode(EmailCreationDto dto);
 }

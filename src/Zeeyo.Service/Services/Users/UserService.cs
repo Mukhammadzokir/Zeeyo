@@ -128,17 +128,17 @@ public class UserService : IUserService
         return true;
     }
 
-    public async Task<bool> CheckUserAsync(string phoneNumber)
+    public async Task<bool> CheckUserAsync(string phoneNumberOrEmail)
     {
-        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumber);
+        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumberOrEmail || u.Email == phoneNumberOrEmail);
         if(userData is null)
             return false;
         return true;
     }
-
-    public async Task<bool> ResetPasswordAsync(string phoneNumber, string newPassword, string confirmPassword)
+    
+    public async Task<bool> ResetPasswordAsync(string phoneNumberOrEmail, string newPassword, string confirmPassword)
     {
-        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumber);
+        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumberOrEmail || u.Email == phoneNumberOrEmail);
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");
 

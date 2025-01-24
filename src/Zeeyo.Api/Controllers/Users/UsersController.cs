@@ -207,8 +207,8 @@ public class UsersController : BaseController
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("check_user")]
-    public async Task<IActionResult> CheckUserAsync([FromQuery(Name = "check_user")] string phoneNumberOrEmail)
+    [HttpGet("check-user")]
+    public async Task<IActionResult> CheckUserAsync([FromQuery(Name = "check-user")] string phoneNumberOrEmail)
         => Ok(new Response
         {
             StatusCode = 200,

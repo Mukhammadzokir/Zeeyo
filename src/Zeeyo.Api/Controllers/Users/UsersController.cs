@@ -201,4 +201,19 @@ public class UsersController : BaseController
             Message = "Success",
             Data = await _userService.ResetPasswordAsync(PhoneNumber, NewPassword, ConfirmPassword)
         });
+
+    /// <summary>
+    /// to Check User by phone number or email 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpGet("check-user")]
+    public async Task<IActionResult> CheckUserAsync([FromQuery(Name = "check-user")] string phoneNumberOrEmail)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _userService.CheckUserAsync(phoneNumberOrEmail)
+        });
+
 }

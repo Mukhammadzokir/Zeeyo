@@ -215,5 +215,4 @@ public class UsersController : BaseController
             Message = "Success",
             Data = await _userService.CheckUserAsync(phoneNumberOrEmail)
         });
-
 }

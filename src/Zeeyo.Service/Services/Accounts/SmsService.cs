@@ -43,13 +43,13 @@ public class SmsService : ISmsService
 
     public async Task<bool> SendAsync(Message message)
     {
-        var user = await _userRepository.SelectAsync(u => u.Id == message.UserId);
+        var user = await _userRepository.SelectAsync(u => u.PhoneNumber == message.PhoneNumber);
 
         if (user is null)
             throw new ZeeyoException(404, "User is not found");
 
         var token = await GenerateTokenAsync();
-        
+
         using var client = new HttpClient();
         using var request = new HttpRequestMessage(HttpMethod.Post, "https://notify.eskiz.uz/api/message/sms/send");
 
@@ -57,9 +57,8 @@ public class SmsService : ISmsService
         request.Headers.Add("Authorization", $"Bearer {token}");
 
         using var content = new MultipartFormDataContent();
-        var phoneNumber = user.PhoneNumber.Substring(1);
-        content.Add(new StringContent($"{phoneNumber}"), "mobile_phone");
-        content.Add(new StringContent($"{message.Data} \n {message.Url}"), "message");
+        content.Add(new StringContent($"{message.PhoneNumber}"), "mobile_phone");
+        content.Add(new StringContent($"{message.Data}"), "message");
         content.Add(new StringContent($"{_configuration["SmsConfig:from"]}"), "from");
         request.Content = content;
         var response = await client.SendAsync(request);

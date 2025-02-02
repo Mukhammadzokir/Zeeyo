@@ -45,7 +45,6 @@ public class SmsService : ISmsService
     {
         var user = await _userRepository.SelectAsync(u => u.Id == message.UserId);
 
-
         if (user is null)
             throw new ZeeyoException(404, "User is not found");
 
@@ -58,12 +57,13 @@ public class SmsService : ISmsService
         request.Headers.Add("Authorization", $"Bearer {token}");
 
         using var content = new MultipartFormDataContent();
-        content.Add(new StringContent($"{user.PhoneNumber}"), "mobile_phone");
+        var phoneNumber = user.PhoneNumber.Substring(1);
+        content.Add(new StringContent($"{phoneNumber}"), "mobile_phone");
         content.Add(new StringContent($"{message.Data} \n {message.Url}"), "message");
         content.Add(new StringContent($"{_configuration["SmsConfig:from"]}"), "from");
         request.Content = content;
-        await client.SendAsync(request);
-          
+        var response = await client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
         return true;
     }
 }

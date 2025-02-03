@@ -22,5 +22,5 @@ public interface IUserService
 
     Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto);
     Task<bool> CheckUserAsync(string phoneNumber);
-    Task<bool> ResetPasswordAsync(string phoneNumber, string newPassword, string confirmPassword);
+    Task<bool> ResetPasswordAsync(string phoneNumberOrEmail, string newPassword, string confirmPassword);
 }

@@ -6,16 +6,19 @@ using Zeeyo.Domain.Entities.Users;
 using Zeeyo.Service.DTOs.SmsMessages;
 using Zeeyo.Service.Interfaces.Accounts;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Zeeyo.Service.Services.Accounts;
 
 public class SmsService : ISmsService
 {
+    private readonly IMemoryCache _memoryCache;
     private readonly IConfiguration _configuration;
     private readonly IRepository<User> _userRepository;
 
-    public SmsService(IConfiguration configuration, IRepository<User> userRepository)
+    public SmsService(IConfiguration configuration, IRepository<User> userRepository, IMemoryCache memoryCache)
     {
+        _memoryCache = memoryCache;
         _configuration = configuration;
         _userRepository = userRepository;
     }
@@ -55,14 +58,39 @@ public class SmsService : ISmsService
 
         // Add the Authorization header with the Bearer token
         request.Headers.Add("Authorization", $"Bearer {token}");
-
         using var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{message.PhoneNumber}"), "mobile_phone");
-        content.Add(new StringContent($"{message.Data}"), "message");
+        content.Add(new StringContent($"{message.Code}"), "message");
         content.Add(new StringContent($"{_configuration["SmsConfig:from"]}"), "from");
         request.Content = content;
         var response = await client.SendAsync(request);
         response.EnsureSuccessStatusCode();
         return true;
+    }
+
+    public async Task<bool> SendCodeByPhoneNumberAsync(string phoneNumber)
+    {
+        var randomNumber = new Random().Next(100000, 999999);
+
+        var message = new Message()
+        {
+            PhoneNumber = phoneNumber,
+            Code = $"{randomNumber}"
+        };
+
+        _memoryCache.Set(phoneNumber, randomNumber.ToString(), TimeSpan.FromMinutes(2));
+        await this.SendAsync(message);
+
+        return true;
+    }
+
+    public bool VerifyCode(Message dto)
+    {
+        var cashedValue = _memoryCache.Get<string>(dto.PhoneNumber);
+
+        if (cashedValue?.ToString() == dto.Code)
+            return true;
+
+        return false;
     }
 }

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.DTOs.SmsMessages;
 using Zeeyo.Service.Interfaces.Accounts;
-using System.ComponentModel.DataAnnotations;
 
 namespace Zeeyo.Api.Controllers.Logins;
 
@@ -16,7 +15,7 @@ public class SmsController : BaseController
     }
 
     [HttpPost("send-code")]
-    public async Task<IActionResult> SendCodeByPhoneNumberAsync([EmailAddress, Required][FromBody] string phoneNumber)
+    public async Task<IActionResult> SendCodeByPhoneNumberAsync([FromBody] string phoneNumber)
         => Ok(new Response
         {
             StatusCode = 200,

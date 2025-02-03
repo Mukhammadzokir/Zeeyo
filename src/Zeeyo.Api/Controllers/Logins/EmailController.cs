@@ -1,17 +1,17 @@
 ﻿using Zeeyo.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Zeeyo.Service.DTOs.Emails;
 using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.Interfaces.Accounts;
 using System.ComponentModel.DataAnnotations;
-using Zeeyo.Service.DTOs.Emails;
 
 namespace Zeeyo.Api.Controllers.Logins;
 
-public class SendCodeByEmailsController : BaseController
+public class EmailController : BaseController
 {
     private readonly IEmailService _emailService;
 
-    public SendCodeByEmailsController(IEmailService emailService)
+    public EmailController(IEmailService emailService)
     {
         _emailService = emailService;
     }

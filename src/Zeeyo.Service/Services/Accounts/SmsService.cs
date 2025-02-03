@@ -71,6 +71,7 @@ public class SmsService : ISmsService
     public async Task<bool> SendCodeByPhoneNumberAsync(string phoneNumber)
     {
         var randomNumber = new Random().Next(100000, 999999);
+        //var code = "Bu Eskiz dan test";
 
         var message = new Message()
         {

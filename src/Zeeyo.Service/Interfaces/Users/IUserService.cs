@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Zeeyo.Service.Configurations;
+using Zeeyo.Service.DTOs.Users.UserResetPassword;
 using Zeeyo.Service.DTOs.Users.Users;
 
 namespace Zeeyo.Service.Interfaces.Users;
@@ -22,5 +23,5 @@ public interface IUserService
 
     Task<bool> ChangePasswordAsync(long id, UserForChangePasswordDto dto);
     Task<bool> CheckUserAsync(string phoneNumber);
-    Task<bool> ResetPasswordAsync(string phoneNumberOrEmail, string newPassword, string confirmPassword);
+    Task<bool> ResetPasswordAsync(ResetPasswordDto dto);
 }

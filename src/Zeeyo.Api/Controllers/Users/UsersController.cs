@@ -5,6 +5,7 @@ using Zeeyo.Api.Controllers.Commons;
 using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Service.Interfaces.Users;
 using System.ComponentModel.DataAnnotations;
+using Zeeyo.Service.DTOs.Users.UserResetPassword;
 
 namespace Zeeyo.Api.Controllers.Users;
 
@@ -189,17 +190,17 @@ public class UsersController : BaseController
     /// <summary>
     /// To Reset new password when forget password
     /// </summary>
-    /// <param name="PhoneNumber"></param>
+    /// <param name="PhoneNumberOrEmail"></param>
     /// <param name="NewPassword"></param>
     /// <param name="ConfirmPassword"></param>
     /// <returns></returns>
     [HttpPut("forget-password")]
-    public async Task<IActionResult> ResetPasswordAsync([Required] string PhoneNumber, [Required] string NewPassword, [Required] string ConfirmPassword)
+    public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPasswordDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _userService.ResetPasswordAsync(PhoneNumber, NewPassword, ConfirmPassword)
+            Data = await _userService.ResetPasswordAsync(dto)
         });
 
     /// <summary>

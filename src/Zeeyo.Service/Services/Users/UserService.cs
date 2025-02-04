@@ -11,6 +11,7 @@ using Zeeyo.Service.DTOs.Users.Users;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.Interfaces.Users;
 using Microsoft.Extensions.Configuration;
+using Zeeyo.Service.DTOs.Users.UserResetPassword;
 
 namespace Zeeyo.Service.Services.Users;
 
@@ -136,16 +137,16 @@ public class UserService : IUserService
         return true;
     }
     
-    public async Task<bool> ResetPasswordAsync(string phoneNumberOrEmail, string newPassword, string confirmPassword)
+    public async Task<bool> ResetPasswordAsync(ResetPasswordDto dto)
     {
-        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == phoneNumberOrEmail || u.Email == phoneNumberOrEmail);
+        var userData = await _userRepository.SelectAsync(u => u.PhoneNumber == dto.PhoneNumberOrEmail || u.Email == dto.PhoneNumberOrEmail);
         if (userData is null)
             throw new ZeeyoException(404, "User is not found");
 
-        if (newPassword != confirmPassword)
+        if (dto.NewPassword != dto.ConfirmPassword)
             throw new ZeeyoException(400, "New password and confirm password aren't equal");
 
-        var hash = PasswordHelper.Hash(newPassword);
+        var hash = PasswordHelper.Hash(dto.NewPassword);
 
         userData.Salt = hash.Salt;
         userData.Password = hash.Hash;

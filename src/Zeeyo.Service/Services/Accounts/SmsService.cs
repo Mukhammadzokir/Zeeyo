@@ -71,15 +71,15 @@ public class SmsService : ISmsService
     public async Task<bool> SendCodeByPhoneNumberAsync(string phoneNumber)
     {
         var randomNumber = new Random().Next(100000, 999999);
-        //var code = "Bu Eskiz dan test";
+        var code = "Bu Eskiz dan test";
 
         var message = new Message()
         {
             PhoneNumber = phoneNumber,
-            Code = $"{randomNumber}"
+            Code = $"{code}"
         };
 
-        _memoryCache.Set(phoneNumber, randomNumber.ToString(), TimeSpan.FromMinutes(2));
+        _memoryCache.Set(phoneNumber, code.ToString(), TimeSpan.FromMinutes(2));
         await this.SendAsync(message);
 
         return true;

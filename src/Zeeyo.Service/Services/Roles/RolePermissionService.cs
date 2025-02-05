@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Text.Json;
 using Zeeyo.Service.Helpers;
 using Zeeyo.Domain.Extensions;
 using Zeeyo.Data.IRepositories;
@@ -8,22 +9,26 @@ using Zeeyo.Service.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Zeeyo.Service.Interfaces.Roles;
 using Zeeyo.Service.DTOs.Roles.RolePermissions;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Zeeyo.Service.Services.Roles;
 
 public class RolePermissionService : IRolePermissionService
 {
     private readonly IMapper _mapper;
+    private readonly IDistributedCache _cache;
     private readonly IRepository<Role> _roleRepository;
     private readonly IRepository<Permission> _permissionRepository;
     private readonly IRepository<RolePermission> _rolePermissionRepository;
 
     public RolePermissionService(
         IMapper mapper,
+        IDistributedCache cache,
         IRepository<Role> roleRepository,
         IRepository<Permission> permissionRepository,
         IRepository<RolePermission> rolePermissionRepository)
     {
+        _cache = cache;
         _mapper = mapper;
         _roleRepository = roleRepository;
         _permissionRepository = permissionRepository;
@@ -107,20 +112,26 @@ public class RolePermissionService : IRolePermissionService
 
     public async Task<RolePermissionForResultDto> RetrieveByIdAsync(long id)
     {
+        string cacheKey = $"role_permission_{id}";
+        var cachedData = await _cache.GetStringAsync(cacheKey);
+
+        if (!string.IsNullOrEmpty(cachedData))
+            return JsonSerializer.Deserialize<RolePermissionForResultDto>(cachedData);
+
         var rolePermissionData = await _rolePermissionRepository
             .SelectAll()
             .Include(rp => rp.Role)
             .Include(rp => rp.Permission)
-            .AsNoTracking()
+            .AsNoTracking() 
             .FirstOrDefaultAsync();
         if (rolePermissionData is null)
             throw new ZeeyoException(404, "RolePermission is not found");
 
-        return _mapper.Map<RolePermissionForResultDto>(rolePermissionData);
-    }
+        var result = _mapper.Map<RolePermissionForResultDto>(rolePermissionData);
 
-    public Task<IEnumerable<RolePermissionForResultDto>> SearchAllAsync(string search, PaginationParams @params)
-    {
-        throw new NotImplementedException();
+        await _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(result),
+        new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30) });
+
+        return result;
     }
 }

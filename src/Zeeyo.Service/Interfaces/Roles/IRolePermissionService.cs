@@ -10,5 +10,4 @@ public interface IRolePermissionService
     Task<RolePermissionForResultDto> AddAsync(RolePermissionForCreationDto dto);
     Task<RolePermissionForResultDto> ModifyAsync(long id, RolePermissionForUpdateDto dto);
     Task<IEnumerable<RolePermissionForResultDto>> RetrieveAllAsync(PaginationParams @params);
-    Task<IEnumerable<RolePermissionForResultDto>> SearchAllAsync(string search, PaginationParams @params);
 }

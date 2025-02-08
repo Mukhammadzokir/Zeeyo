@@ -3,7 +3,6 @@ using Zeeyo.Service.DTOs.Payments;
 using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Service.DTOs.Students.Attendances;
 using Zeeyo.Service.DTOs.Students.Enrollments;
-using Zeeyo.Service.Commons.Attributes;
 
 namespace Zeeyo.Service.DTOs.Students.Students;
 
@@ -13,8 +12,6 @@ public class StudentForResultDto
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string TelegramUserName { get; set; }
-    public long UserId { get; set; }
-    public User User { get; set; }
     public long BranchId { get; set; }
     public Branch Branch { get; set; }
     public string PhoneNumber { get; set; }

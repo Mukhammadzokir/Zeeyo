@@ -15,7 +15,7 @@ public class StudentForCreationDto
     public string Password { get; set; }
 
     [CustomEmailAddressAttribute]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     public string? TelegramUserName { get; set; }
 

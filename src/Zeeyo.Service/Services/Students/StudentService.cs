@@ -197,7 +197,8 @@ public class StudentService : IStudentService
     public async Task<StudentForResultDto> RetrieveByPhoneNumberAsync(string phoneNumber)
     {
         var studentData = await _studentRepository
-            .SelectAsync(s => s.PhoneNumber == phoneNumber && s.UserRoles.Any(sr => sr.Role.Name == "Student"));
+            .SelectAsync(s => s.PhoneNumber == phoneNumber);
+            //.SelectAsync(s => s.PhoneNumber == phoneNumber && s.UserRoles.Any(sr => sr.Role.Name == "Student"));
 
         if (studentData is null)
             throw new ZeeyoException(404, "Student is not found");

@@ -1,0 +1,53 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.logo-square {
+    width: 50px; /* Adjust as needed */
+    height: 80px; /* Ensures square shape */
+    object-fit: cover; /* Prevents distortion */
+    border-radius: 50px; /* Optional: Slightly rounded corners */
+}
+
+.brand-text {
+    font-size: 1.5rem; /* Adjust size as needed */
+    font-weight: bold;
+    color: white; /* Adjust color to match theme */
+    letter-spacing: 1px; /* Optional for styling */
+}
+
+/* Moves logo and text slightly left */
+.navbar-brand {
+    margin-left: -10px; /* Adjust left positioning */
+}
+
+.navbar-brand {
+    margin-left: -30px; /* Adjust the value as needed */
+}
+
+.hero p {
+    color: white; /* Makes text white */
+}
+
+
+
+

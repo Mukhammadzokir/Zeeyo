@@ -5,9 +5,10 @@ namespace Zeeyo.Service.DTOs.Logins;
 
 public class LoginForCreationDto
 {
-    [Required(ErrorMessage = "Telefon raqamni kiriting"), PhoneNumberAttribute]
+    [Required(ErrorMessage = "Enter the your email or phone number"), EmailOrPhone]
+    [Display(Name = "Phone number Or Email")]
     public string PhoneNumber { get; set; }
 
-    [Required(ErrorMessage = "Parolni kiriting"), StrongPasswordAttribute]
+    [Required(ErrorMessage = "Enter the password"), StrongPasswordAttribute]
     public string Password { get; set; }
 }

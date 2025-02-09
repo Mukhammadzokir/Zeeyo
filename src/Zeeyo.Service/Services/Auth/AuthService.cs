@@ -5,6 +5,8 @@ using Zeeyo.Service.Interfaces.Auth;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Zeeyo.Service.Services.Auth;
 
@@ -33,6 +35,7 @@ public class AuthService : IAuthService
             expires: DateTime.Now.AddMinutes(double.Parse(configuration["Lifetime"])),
             signingCredentials: credentials);
 
+        
         return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
     }
 }

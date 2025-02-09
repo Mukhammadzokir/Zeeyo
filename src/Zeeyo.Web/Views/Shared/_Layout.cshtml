@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Zeeyo </title>
+
+    <!-- Bootstrap & Custom CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Zeeyo.Web.styles.css" asp-append-version="true" />
+
+    <style>
+        /* Gradient Background */
+        body {
+            background: linear-gradient(to right, #1e2a47, #174469);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: transparent !important;
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            height: 40px; /* Adjust based on your logo size */
+        }
+
+        .navbar .nav-link {
+            color: white !important;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s ease-in-out;
+        }
+
+            .navbar .nav-link:hover {
+                color: #00c3ff !important;
+            }
+
+        .navbar .btn-outline-light {
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-weight: bold;
+            border: 2px solid white;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .navbar .btn-outline-light:hover {
+                background: white;
+                color: #1e2a47;
+            }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+            .hero h1 {
+                font-size: 48px;
+                font-weight: bold;
+                background: linear-gradient(to right, #ff8a00, #e52e71);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .hero p {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .hero .btn {
+                padding: 12px 20px;
+                font-size: 18px;
+                margin-right: 10px;
+            }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        /* Responsive */
+        
+
+
+        .hero h1 {
+            font-size: 36px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/Logoo.png" asp-append-version="true" alt="Zeeyo Logo" class="logo-square me-1">  
+                    <span class="brand-text">Zeeyo</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <partial name = "_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1>Web App <span class="text-primary">Development.</span></h1>
+                    <p>
+                        Join us in the exciting world of programming and turn your ideas into reality.
+                        Unlock the world of endless possibilities – learn to code and shape the digital future with us.
+                    </p>
+                    <a href="#" class="btn btn-primary">Join Now</a>
+                    <a href="#" class="btn btn-outline-light">Learn More</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="~/images/zeyo.png" class="img-fluid" alt="Wep Development"> <!-- Replace with your actual image -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="color: white;">
+            &copy; 2025 - Zeeyo CRM - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

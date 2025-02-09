@@ -1,0 +1,82 @@
+﻿@using Zeeyo.Web.ViewModels;
+@model VerifyCodeViewModel;
+
+@{
+    ViewData["Title"] = "Verify Code";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">Verify Code</h2>
+        <form asp-action="VerifyCode" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label class="form-label">Code has been sent to your @Model.EmailOrPhoneNumber</label>
+                <input asp-for="EmailOrPhoneNumber" class="form-control" readonly />
+            </div>
+            <div class="mb-3" mt-3>
+                <label asp-for="Code" class="form-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+
+            <input type="submit" value="Verify" class="btn btn-success w-100 p-2 mt-4" />
+
+            <!-- Countdown Timer and Resend Button -->
+            <div class="text-center mt-4">
+                <span id="timer" class="text-muted">Resend in <span id="countdown">120</span> seconds</span>
+                <button id="resendButton" class="btn btn-link text-decoration-none" disabled onclick="resendCode()">Resend Code</button>
+            </div>
+
+            <div class="text-center mt-4">
+                <a asp-controller="Account" asp-action="VerifyEmailOrPhoneNumber" class="text-decoration-none">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+
+    <script>
+        let timeLeft = 120; // Set to 2 minutes (120 seconds)
+        const countdownEl = document.getElementById("countdown");
+        const resendBtn = document.getElementById("resendButton");
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                countdownEl.innerText = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                resendBtn.disabled = false;
+            }
+        }
+
+        function resendCode() {
+            resendBtn.disabled = true;
+            timeLeft = 120; // Reset to 2 minutes
+            updateTimer();
+
+            fetch('@Url.Action("VerifyEmailOrPhoneNumber", "Account")', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken": document.querySelector("input[name='__RequestVerificationToken']").value
+                },
+                body: JSON.stringify({ emailOrPhoneNumber: "@Model.EmailOrPhoneNumber" })
+            })
+            .then(res => res.json())
+            .then(data => alert(data.success ? "Code resent!" : "Failed to resend"))
+            .catch(() => alert("Error occurred"));
+        }
+
+        updateTimer(); // Start countdown on page load
+    </script>
+}

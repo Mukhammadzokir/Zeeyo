@@ -1,0 +1,46 @@
+﻿@model LoginForCreationDto;
+@using Zeeyo.Service.DTOs.Logins
+
+@{
+	ViewData["Title"] = "Login";
+	Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+	<div class="account-box">
+		<h2 class="text-center mb-4">Login</h2>
+		<form asp-action="Login" method="post">
+			@Html.AntiForgeryToken()
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="mb-3">
+				<label asp-for="PhoneNumber" class="form-label"></label>
+				<input asp-for="PhoneNumber" class="form-control" />
+				<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="Password" class="form-label"></label>
+				<input asp-for="Password" class="form-control" />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+			<div class="d-flex align-items-center justify-content-between mb-3">
+				@* <div class="form-check">
+					<input type="checkbox" asp-for="RememberMe" class="form-check-input" id="RememberMe">
+					<label class="form-check-label" for="RememberMe">
+						@Html.DisplayNameFor(a => a.RememberMe)
+					</label>
+				</div> *@
+				<a asp-controller="Account" asp-action="VerifyEmailOrPhoneNumber" class="text-primary">Forget password?</a>
+			</div>
+			<input type="submit" value="Login" class="btn btn-success w-100	mt-4" />
+			<div class="text-center">
+				<a asp-controller="Home" asp-action="Index" class="d-block text-center mt-4 text-decoration-none">Back</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+	}
+}

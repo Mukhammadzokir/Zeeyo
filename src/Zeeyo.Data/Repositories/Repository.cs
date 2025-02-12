@@ -20,7 +20,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
     {
         var entity = await _dbSet.Where(e => e.Id == id).FirstOrDefaultAsync();
         entity.IsDeleted = true;
-        entity.DeletedAt = DateTime.UtcNow;
 
         return await _dbContext.SaveChangesAsync() > 0;
     }

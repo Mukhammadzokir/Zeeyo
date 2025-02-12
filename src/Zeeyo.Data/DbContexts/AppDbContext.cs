@@ -7,6 +7,7 @@ using Zeeyo.Domain.Entities.Branches;
 using Zeeyo.Domain.Entities.Payments;
 using Zeeyo.Domain.Entities.Students;
 using Zeeyo.Domain.Entities.Teachers;
+using Zeeyo.Domain.Entities.Contacts;
 
 namespace Zeeyo.Data.DbContexts;
 
@@ -22,6 +23,7 @@ public class AppDbContext : DbContext
     DbSet<Lesson> Lessons { get; set; }
     DbSet<Branch> Branches { get; set; }
     DbSet<Payment> Payments { get; set; }
+    DbSet<Contact> Contacts { get; set; }
     DbSet<UserCode> UserCodes { get; set; }
     DbSet<UserRole> UserRoles { get; set; }
     DbSet<Permission> Permissions { get; set; }

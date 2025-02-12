@@ -23,6 +23,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Zeeyo.Service.Interfaces.Contacts;
+using Zeeyo.Service.Services.Contacts;
 
 
 namespace Zeeyo.Shared.Extensions;
@@ -34,6 +36,8 @@ public static class ServiceExtension
         // Repository
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+        services.AddScoped<IContactRepository, ContactRepository>();
+
         // Services
         services.AddScoped<ISmsService, SmsService>();
         services.AddScoped<IUserService, UserService>();
@@ -44,6 +48,7 @@ public static class ServiceExtension
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<ILessonService, LessonService>();
         services.AddScoped<IBranchService, BranchService>();
+        services.AddScoped<IContactService, ContactSerivce>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ITeacherService, TeacherService>();

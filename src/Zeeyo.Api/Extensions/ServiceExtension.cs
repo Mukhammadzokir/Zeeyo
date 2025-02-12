@@ -17,10 +17,12 @@ using Zeeyo.Service.Services.Students;
 using Zeeyo.Service.Services.Teachers;
 using Zeeyo.Service.Services.Accounts;
 using Zeeyo.Service.Services.Payments;
+using Zeeyo.Service.Services.Contacts;
 using Zeeyo.Service.Interfaces.Courses;
 using Zeeyo.Service.Interfaces.Accounts;
 using Zeeyo.Service.Interfaces.Branches;
 using Zeeyo.Service.Interfaces.Teachers;
+using Zeeyo.Service.Interfaces.Contacts;
 using Zeeyo.Service.Interfaces.Payments;
 using Zeeyo.Service.Interfaces.Students;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,8 +36,10 @@ public static class ServiceExtension
         // Mapper
         services.AddAutoMapper(typeof(MappingProfile));
         
-        // Repository
+        // Repositories
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+        services.AddScoped<IContactRepository, ContactRepository>();
 
         // Services
         services.AddScoped<ISmsService, SmsService>();
@@ -47,6 +51,7 @@ public static class ServiceExtension
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<ILessonService, LessonService>();
         services.AddScoped<IBranchService, BranchService>();
+        services.AddScoped<IContactService, ContactSerivce>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ITeacherService, TeacherService>();

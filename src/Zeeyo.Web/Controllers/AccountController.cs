@@ -54,7 +54,7 @@ namespace Zeeyo.Web.Controllers
                     Expires = DateTime.UtcNow.AddMinutes(1) // Set expiration time
                 });
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "AdminPanel");
             }
             else
             {
@@ -197,14 +197,6 @@ namespace Zeeyo.Web.Controllers
                 ModelState.AddModelError("", "Reset password is failed!");
                 return View(model);
             }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Logout()
-        {
-            Response.Cookies.Delete("AuthToken"); // Remove JWT token
-            return RedirectToAction("Index", "Home");
         }
     }
 }

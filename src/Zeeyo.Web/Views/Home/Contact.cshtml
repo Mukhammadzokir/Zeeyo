@@ -1,0 +1,170 @@
+﻿@using Zeeyo.Service.DTOs.Contacts
+@model ContactDto
+
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<style>
+    /* Contact Section Styles */
+    .contact-section {
+        background: #1e2a47;
+        padding: 60px 0;
+        color: white;
+    }
+
+    .contact-info {
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+        .contact-info h4 {
+            color: #00c3ff;
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: #00c3ff;
+            text-decoration: none;
+        }
+
+            .contact-info a:hover {
+                text-decoration: underline;
+            }
+
+    /* Form Styling */
+    .contact-form {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 8px;
+    }
+
+        .contact-form label {
+            font-weight: bold;
+            color: white;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background: #00c3ff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .contact-form button:hover {
+                background: #008fcf;
+            }
+
+    /* Social Icons */
+    .social-icons a {
+        font-size: 12px;
+        margin-right: 15px;
+        color: white;
+        transition: 0.3s;
+    }
+
+        .social-icons a:hover {
+            color: #00c3ff;
+        }
+
+</style>
+
+<!-- Contact Section -->
+<div class="contact-section">
+    <div class="container">
+        <h2 class="text-center mb-4">CONTACT US</h2>
+
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-md-5">
+                <div class="contact-info">
+                    <h4>ADDRESS</h4>
+                    <p>@(Model?.Address ?? "No address available")</p>
+
+                    <h4>PHONE</h4>
+                    <p>@(Model?.Phone ?? "No phone number")</p>
+
+                    <h4>EMAIL</h4>
+                    <p>@(Model?.Email ?? "No email available")</p>
+
+                    <h4>WEBSITE</h4>
+                    <p>
+                        @if (!string.IsNullOrEmpty(Model?.Website))
+                        {
+                            <a href="@Model.Website" target="_blank">@Model.Website</a>
+                        }
+                        else
+                        {
+                            <span>No website available</span>
+                        }
+                    </p>
+
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        @if (!string.IsNullOrEmpty(Model?.Facebook))
+                        {
+                            <a href="@Model.Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model?.Twitter))
+                        {
+                            <a href="@Model.Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model?.Instagram))
+                        {
+                            <a href="@Model.Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model?.LinkedIn))
+                        {
+                            <a href="@Model.LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <h4>Send a Message</h4>
+                    <form method="post" asp-action="SendMessage">
+                        <div class="mb-3">
+                            <label>Name</label>
+                            <input type="text" name="Name" class="form-control" placeholder="Your Name" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email" name="Email" class="form-control" placeholder="Your Email" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Message</label>
+                            <textarea name="Message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
